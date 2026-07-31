@@ -1,0 +1,490 @@
+
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0d">
+  <meta name="description" content="OpenFA to niezależna rekonstrukcja Fragile Allegiance oparta na analizie oryginalnego programu, danych i zapisów gry.">
+  <link rel="canonical" href="https://ender-dev-pl.github.io/openfa-docs/pl/">
+  <link rel="alternate" hreflang="en" href="https://ender-dev-pl.github.io/openfa-docs/">
+  <link rel="alternate" hreflang="pl" href="https://ender-dev-pl.github.io/openfa-docs/pl/">
+  <link rel="alternate" hreflang="x-default" href="https://ender-dev-pl.github.io/openfa-docs/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenFA">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:title" content="OpenFA: Rekonstrukcja Fragile Allegiance">
+  <meta property="og:description" content="Dziennik prac i zweryfikowane wyniki niezależnej rekonstrukcji Fragile Allegiance.">
+  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-surface.png">
+  <meta property="og:image:width" content="1291">
+  <meta property="og:image:height" content="511">
+  <meta property="og:image:alt" content="Ta sama kolonia na asteroidzie w oryginalnym Fragile Allegiance i w OpenFA">
+  <meta property="og:url" content="https://ender-dev-pl.github.io/openfa-docs/pl/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OpenFA: Rekonstrukcja Fragile Allegiance">
+  <meta name="twitter:description" content="Dziennik prac nad niezależną rekonstrukcją Fragile Allegiance.">
+  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-surface.png">
+  <meta name="twitter:image:alt" content="Ta sama kolonia na asteroidzie w oryginalnym Fragile Allegiance i w OpenFA">
+  <title>OpenFA: Rekonstrukcja Fragile Allegiance</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Strona główna OpenFA">
+      <img class="brand-mark" src="../favicon.png" alt="" width="864" height="864" decoding="async">
+      <span>OpenFA</span>
+    </a>
+    <nav class="site-nav" aria-label="Główna nawigacja">
+      <a href="#original-game">Gra</a>
+      <a href="#reconstruction">OpenFA</a>
+      <a href="#progress">Postęp</a>
+      <a href="devlog/index.html">Dziennik</a>
+      <a href="#faq">FAQ</a>
+      <a class="language-switch" href="../index.html" hreflang="en" lang="en" aria-label="Przejdź do wersji angielskiej">EN</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Niezależna rekonstrukcja <em>Fragile Allegiance</em></p>
+        <h1>
+          <a href="https://www.openttd.org/" rel="external">OpenTTD</a> istnieje.
+          <a href="https://www.openra.net/" rel="external">OpenRA</a> istnieje.
+          <span>Dlaczego więc wciąż nie ma OpenFA?</span>
+        </h1>
+        <p class="hero-answer">Zmieńmy to.</p>
+        <p class="status-line"><span aria-hidden="true"></span> Wersja rozwojowa &middot; jeszcze niepubliczna &middot; zweryfikowano 31 lipca 2026</p>
+        <p class="hero-intro">
+          OpenFA to niezależna rekonstrukcja gry strategicznej <em>Fragile Allegiance</em> z lat 90. Odtwarza zarządzanie koloniami, dyplomację i walkę na współczesnych systemach, zgodnie z udokumentowanym zachowaniem oryginału.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#reconstruction">Poznaj OpenFA</a>
+          <a class="button button-secondary" href="devlog/index.html">Czytaj dziennik</a>
+        </div>
+      </div>
+
+      <figure class="hero-visual framed-media">
+        <img src="../assets/images/comparison-surface.png" alt="Powierzchnia asteroidy z oryginalnego Fragile Allegiance po lewej i rekonstrukcja OpenFA po prawej" width="1291" height="511" decoding="async" fetchpriority="high">
+        <figcaption>
+          <strong>Oryginał / OpenFA</strong>
+          Ta sama zapisana kolonia wyrenderowana przez oryginalną grę i rekonstrukcję.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section inspiration" aria-labelledby="inspiration-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Wcześniejsze otwarte rekonstrukcje</p>
+        <h2 id="inspiration-title">Zainspirowani projektami, które ocaliły klasyki</h2>
+        <p>
+          OpenTTD i OpenRA to działające od lat przykłady otwartych projektów strategicznych.
+        </p>
+      </div>
+
+      <div class="inspiration-grid">
+        <article class="inspiration-card">
+          <p class="card-index">01</p>
+          <h3><a href="https://www.openttd.org/about" rel="external">OpenTTD</a></h3>
+          <p>
+            Otwarta reimplementacja Transport Tycoon Deluxe ze wsparciem współczesnych platform.
+          </p>
+        </article>
+        <article class="inspiration-card">
+          <p class="card-index">02</p>
+          <h3><a href="https://www.openra.net/about/" rel="external">OpenRA</a></h3>
+          <p>
+            Przenośny silnik dla kilku klasycznych gier z serii Command & Conquer.
+          </p>
+        </article>
+        <article class="inspiration-card accent-card">
+          <p class="card-index">03</p>
+          <h3>OpenFA</h3>
+          <p>
+            OpenFA stosuje tę samą ogólną ideę do <em>Fragile Allegiance</em>, z osobnym kodem opartym na badaniach oryginału.
+          </p>
+        </article>
+      </div>
+
+      <p class="independence-note">
+        OpenFA jest niezależny od obu projektów. OpenRA wpłynął na część decyzji architektonicznych.
+      </p>
+    </section>
+
+    <section class="section original-game" id="original-game" aria-labelledby="game-title">
+      <div class="section-heading">
+        <p class="eyebrow">Oryginalna gra</p>
+        <h2 id="game-title">Górnictwo było dopiero początkiem</h2>
+        <p>
+          W <em>Fragile Allegiance</em> zarządzasz koloniami TetraCorp w Fragmented Sectors: badasz asteroidy, budujesz osady i wysyłasz rudę do Federacji.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article>
+          <span class="feature-number">01</span>
+          <h3>Poszukuj i kolonizuj</h3>
+          <p>Badaj asteroidy i zakładaj działające kolonie.</p>
+        </article>
+        <article>
+          <span class="feature-number">02</span>
+          <h3>Buduj gospodarkę</h3>
+          <p>Bilansuj media, pracowników, magazyny i transport rudy.</p>
+        </article>
+        <article>
+          <span class="feature-number">03</span>
+          <h3>Rozgrywaj rywali</h3>
+          <p>Handluj i negocjuj albo korzystaj ze szpiegostwa i sabotażu.</p>
+        </article>
+        <article>
+          <span class="feature-number">04</span>
+          <h3>Broń swoich zdobyczy</h3>
+          <p>Badaj technologie, buduj floty i broń kolonii.</p>
+        </article>
+      </div>
+
+      <div class="gallery-grid original-gallery">
+        <figure class="framed-media">
+          <img src="../assets/images/original-main-menu.png" alt="Menu główne oryginalnego Fragile Allegiance uruchomionego w DOSBoxie" width="642" height="507" loading="lazy" decoding="async">
+          <figcaption><strong>Oryginalna gra</strong> Menu główne i industrialny interfejs.</figcaption>
+        </figure>
+        <figure class="framed-media">
+          <img src="../assets/images/original-asteroid-view.png" alt="Kolonia na asteroidzie w oryginalnym Fragile Allegiance" width="642" height="507" loading="lazy" decoding="async">
+          <figcaption><strong>Oryginalna gra</strong> Widok powierzchni asteroidy.</figcaption>
+        </figure>
+        <figure class="framed-media">
+          <img src="../assets/images/original-building-placement.png" alt="Siatka rozmieszczania budynków w oryginalnym Fragile Allegiance" width="642" height="507" loading="lazy" decoding="async">
+          <figcaption><strong>Oryginalna gra</strong> Rozmieszczanie budynków i siatka terenu.</figcaption>
+        </figure>
+      </div>
+
+      <div class="split-callout">
+        <div>
+          <p class="eyebrow">Projekt oryginalnej gry</p>
+          <h3>Co wyróżnia Fragile Allegiance</h3>
+        </div>
+        <p>
+          <em>Fragile Allegiance</em> łączy zarządzanie kolonią, ruchome asteroidy, dyplomację, szpiegostwo, badania i walkę.
+        </p>
+      </div>
+
+      <p class="source-link">
+        Oryginalna gra jest nadal dostępna w sprzedaży na
+        <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">GOG.com</a>.
+      </p>
+    </section>
+
+    <section class="section reconstruction" id="reconstruction" aria-labelledby="reconstruction-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Rekonstrukcja</p>
+        <h2 id="reconstruction-title">Odtwarzanie gry na podstawie oryginalnych materiałów</h2>
+        <p>
+          OpenFA odtwarza zachowanie na podstawie pliku wykonywalnego, zasobów, zapisów gry i obserwacji działania. Sam zrzut ekranu nie jest dowodem.
+        </p>
+      </div>
+
+      <div class="definition-grid">
+        <article class="definition-card">
+          <p class="label">OpenFA to</p>
+          <ul class="signal-list positive-list">
+            <li>Niezależna rekonstrukcja oryginalnej gry</li>
+            <li>Przenośny silnik z deterministyczną symulacją</li>
+            <li>Importer danych z legalnej instalacji oryginału</li>
+            <li>Podstawa zachowania gry i rozszerzeń opartych na danych</li>
+            <li>Jawnie opisane niewiadome</li>
+          </ul>
+        </article>
+        <article class="definition-card subdued-card">
+          <p class="label">OpenFA nie jest</p>
+          <ul class="signal-list negative-list">
+            <li>Remakiem wizualnym z wymyślonymi zasadami</li>
+            <li>Redystrybucją oryginalnej gry ani jej zasobów</li>
+            <li>Forkiem OpenTTD ani OpenRA</li>
+            <li>Oficjalnym produktem</li>
+            <li>Gotową grą do pobrania na obecnym etapie</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="package-panel" aria-labelledby="package-title">
+        <div class="package-badge" aria-hidden="true">
+          <span>Pakiet zawartości FA</span>
+          <strong>.fapkg</strong>
+          <small>tylko dane · wersjonowany · deterministyczny</small>
+        </div>
+        <div class="package-copy">
+          <p class="eyebrow">Pakiety zawartości</p>
+          <h3 id="package-title">Kontrolowany format rozszerzeń</h3>
+          <p>
+            Plik <code>.fapkg</code> to wersjonowane archiwum ZIP zawierające wyłącznie dane. Pakiety nie mogą wstrzykiwać kodu do symulacji.
+          </p>
+          <div class="package-points">
+            <p><strong>Bezpieczne granice</strong><span>Tylko typowane dane; bez wykonywalnych wtyczek.</span></p>
+            <p><strong>Powtarzalne składanie</strong><span>Stałe identyfikatory i priorytety zapewniają powtarzalne składanie.</span></p>
+            <p><strong>Chroniona zgodność z oryginałem</strong><span>Oryginalne zapisy korzystają ze standardowego pakietu zgodności.</span></p>
+          </div>
+          <p class="package-scope">
+            Wersja 1 obsługuje katalogi budowy. Kolejne typy zasobów można dodać później.
+          </p>
+        </div>
+      </div>
+
+      <div class="principles-panel" aria-labelledby="principles-title">
+        <p class="eyebrow">Zasady rekonstrukcji</p>
+        <h3 id="principles-title">Weryfikacja ustaleń rekonstrukcji</h3>
+        <ol class="principles-list">
+          <li><span>01</span><strong>Odtworzenie zachowania</strong><small>Źródła: plik wykonywalny, dane, zapisy i kadry z działającej gry.</small></li>
+          <li><span>02</span><strong>Korzystanie z rzeczywistego stanu</strong><small>Narzędzia i renderery korzystają z rzeczywistego stanu symulacji.</small></li>
+          <li><span>03</span><strong>Zachowanie kompozycji</strong><small>Odtwarzamy projekcję, palety, maski, warstwy i kolejność rysowania.</small></li>
+          <li><span>04</span><strong>Oznaczenie niewiadomych</strong><small>Nieznane zachowanie pozostaje oznaczone jako nieznane.</small></li>
+        </ol>
+      </div>
+
+      <div class="method-panel" aria-labelledby="method-title">
+        <div class="method-heading">
+          <p class="eyebrow">Jak powstaje projekt</p>
+          <h3 id="method-title">Wykorzystanie AI i automatyzacji</h3>
+          <p>
+            AI pomaga przeszukiwać dekompilat, a testy odtwarzają znane przypadki. Punktem odniesienia pozostają oryginalne dane.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          <article>
+            <p class="method-index">01 / Analiza</p>
+            <h4>Analiza zdekompilowanego kodu z użyciem AI</h4>
+            <p>
+              AI łączy funkcje, struktury danych, zasoby i zapisany stan. Jego sugestie są traktowane jako hipotezy.
+            </p>
+          </article>
+          <article>
+            <p class="method-index">02 / Weryfikacja</p>
+            <h4>Automatyczne testy regresji</h4>
+            <p>
+              Testy automatyczne obejmują parsery, zapisy, symulację, dekodowanie zasobów i akcje referencyjne.
+            </p>
+          </article>
+          <article>
+            <p class="method-index">03 / Odpowiedzialność</p>
+            <h4>Ręczna ocena nazw i wierności obrazu</h4>
+            <p>
+              Nazwy i ocena wierności są sprawdzane ręcznie. Zmiany wizualne porównujemy w docelowym kliencie.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="spare-time-panel" aria-labelledby="spare-time-title">
+        <div>
+          <p class="eyebrow">Projekt osobisty</p>
+          <h3 id="spare-time-title">Projekt rozwijany w wolnym czasie</h3>
+        </div>
+        <div>
+          <p>
+            OpenFA to projekt rozwijany w wolnym czasie, głównie latem.
+          </p>
+          <p>
+            Nie ma harmonogramu wydań. Aktualizacje opisują przetestowane wyniki.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section progress" id="progress" aria-labelledby="progress-title">
+      <div class="section-heading">
+        <p class="eyebrow">Rekonstrukcja w toku</p>
+        <h2 id="progress-title">Aktualny stan rekonstrukcji</h2>
+        <p>
+          Prace są oznaczone jako odtworzone, działające lub aktywne.
+        </p>
+      </div>
+
+      <div class="progress-layout">
+        <div class="progress-list">
+          <article>
+            <p class="progress-state recovered">Odtworzone</p>
+            <h3>Oryginalne formaty i palety</h3>
+            <p>Czytniki kontenerów obrazów, sprite'ów, palet i wideo.</p>
+          </article>
+          <article>
+            <p class="progress-state recovered">Odtworzone</p>
+            <h3>Zapisy świata oryginalnej gry</h3>
+            <p>Typowany stan asteroid, frakcji, budynków, statków i symulacji z oryginalnych zapisów.</p>
+          </article>
+          <article>
+            <p class="progress-state running">Działa w OpenFA</p>
+            <h3>Rekonstrukcja powierzchni asteroidy</h3>
+            <p>Deterministyczna rzeźba, maski budowy, projekcja i kompozycja.</p>
+          </article>
+          <article>
+            <p class="progress-state running">Działa w OpenFA</p>
+            <h3>Mapa strategiczna i oryginalny interfejs</h3>
+            <p>Odtworzone skala, sensory, kolory właścicieli, ikony i wykrywanie kliknięć.</p>
+          </article>
+          <article>
+            <p class="progress-state active">Aktywne prace</p>
+            <h3>Animacja, interakcja i symulacja</h3>
+            <p>Łączenie budynków, statków, kolejek, menu i mechaniki gry.</p>
+          </article>
+        </div>
+
+        <figure class="framed-media progress-figure">
+          <img src="../assets/images/comparison-map.png" alt="Mapa strategiczna z oryginalnego Fragile Allegiance po lewej i rekonstrukcja OpenFA po prawej" width="1283" height="509" loading="lazy" decoding="async">
+          <figcaption>
+            <strong>Oryginał / OpenFA</strong>
+            Porównanie mapy strategicznej dla tego samego sektora i odtworzonej geometrii widoku.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="comparison-heading">
+        <p class="eyebrow">Porównania referencyjne</p>
+        <h3>Kadry z oryginału i OpenFA</h3>
+        <p>
+          Oryginał po lewej, OpenFA po prawej. Wybierz obraz, aby zobaczyć pełną rozdzielczość.
+        </p>
+      </div>
+
+      <div class="comparison-gallery">
+        <figure class="framed-media">
+          <a href="../assets/images/comparison-surface.png" aria-label="Otwórz porównanie powierzchni asteroidy w pełnej rozdzielczości">
+            <img src="../assets/images/comparison-surface.png" alt="Oryginalna kolonia na asteroidzie po lewej i rekonstrukcja OpenFA po prawej" width="1291" height="511" loading="lazy" decoding="async">
+          </a>
+          <figcaption><strong>Powierzchnia i osada</strong> Rzeźba terenu, niebo, budynki, statki i kompozycja interfejsu.</figcaption>
+        </figure>
+        <figure class="framed-media">
+          <a href="../assets/images/comparison-grid.png" aria-label="Otwórz porównanie siatki budowy w pełnej rozdzielczości">
+            <img src="../assets/images/comparison-grid.png" alt="Oryginalna siatka budowy po lewej i rekonstrukcja OpenFA po prawej" width="1290" height="511" loading="lazy" decoding="async">
+          </a>
+          <figcaption><strong>Siatka budowy</strong> Projekcja, maskowanie terenu i zapisana dostępność budowy.</figcaption>
+        </figure>
+        <figure class="framed-media">
+          <a href="../assets/images/comparison-map.png" aria-label="Otwórz porównanie mapy strategicznej w pełnej rozdzielczości">
+            <img src="../assets/images/comparison-map.png" alt="Oryginalna mapa strategiczna po lewej i rekonstrukcja OpenFA po prawej" width="1283" height="509" loading="lazy" decoding="async">
+          </a>
+          <figcaption><strong>Mapa strategiczna</strong> Skala, zasięgi sensorów, własność i warstwy obiektów.</figcaption>
+        </figure>
+        <figure class="framed-media">
+          <a href="../assets/images/comparison-building.png" aria-label="Otwórz porównanie katalogu budowy w pełnej rozdzielczości">
+            <img src="../assets/images/comparison-building.png" alt="Oryginalny katalog budowy po lewej i rekonstrukcja OpenFA po prawej" width="1289" height="513" loading="lazy" decoding="async">
+          </a>
+          <figcaption><strong>Katalog budowy</strong> Oryginalne zasoby, stan wyboru, opisy i nawigacja.</figcaption>
+        </figure>
+      </div>
+
+      <div class="evidence-strip" aria-label="Źródła wykorzystywane w rekonstrukcji">
+        <p>Analiza pliku wykonywalnego</p>
+        <p>Oryginalne zasoby</p>
+        <p>Zapisy gry</p>
+        <p>Obserwacja działającego programu</p>
+      </div>
+    </section>
+
+    <section class="section devlog-preview" aria-labelledby="devlog-title">
+      <div class="section-heading with-action">
+        <div>
+          <p class="eyebrow">Dziennik prac</p>
+          <h2 id="devlog-title">Czego dotąd się dowiedzieliśmy</h2>
+          <p class="devlog-origin-note">Wpisy opisują pierwszy dekoder w Pythonie, zapisy gry, rendering i interfejs.</p>
+        </div>
+        <a class="text-link" href="devlog/index.html">Zobacz cały dziennik <span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+      <div class="devlog-grid">
+        <article class="devlog-card">
+          <p class="devlog-date"><time datetime="2026-07-31">31 lipca 2026</time></p>
+          <h3><a href="devlog/index.html#strategic-map">Mapa strategiczna</a></h3>
+          <p>Wpis dokumentuje skalę mapy, widoczność, kolory właścicieli i geometrię sensorów odtworzone z oryginału.</p>
+          <a class="card-link" href="devlog/index.html#strategic-map">Czytaj wpis <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="devlog-card">
+          <p class="devlog-date"><time datetime="2026-07-30">30 lipca 2026</time></p>
+          <h3><a href="devlog/index.html#saved-world">Rozpakowany zapisany świat</a></h3>
+          <p>Importer zapisów odczytuje już budynki, floty, personel, dyplomację i rekordy dynamicznej symulacji.</p>
+          <a class="card-link" href="devlog/index.html#saved-world">Czytaj wpis <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="devlog-card">
+          <p class="devlog-date"><time datetime="2026-07-27">27 lipca 2026</time></p>
+          <h3><a href="devlog/index.html#asteroid-relief">Rzeźba terenu przed dekoracją</a></h3>
+          <p>Powierzchnia asteroidy zaczyna się od deterministycznej geometrii, odtworzonych masek i oryginalnej kolejności kompozycji.</p>
+          <a class="card-link" href="devlog/index.html#asteroid-relief">Czytaj wpis <span aria-hidden="true">&rarr;</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Pytania z sektora</p>
+        <h2 id="faq-title">Najczęściej zadawane pytania</h2>
+      </div>
+
+      <div class="faq-list">
+        <details>
+          <summary>Czy mogę już zagrać w OpenFA?</summary>
+          <p>Nie ma jeszcze publicznego buildu. Wersje rozwojowe działają w docelowym kliencie.</p>
+        </details>
+        <details>
+          <summary>Czy potrzebuję oryginalnej gry?</summary>
+          <p>Tak. OpenFA importuje wymagane dane z legalnej instalacji <em>Fragile Allegiance</em>. Nie pobiera ani nie redystrybuuje zasobów oryginalnej gry.</p>
+        </details>
+        <details>
+          <summary>Czy OpenFA to remake lub port kodu źródłowego?</summary>
+          <p>To niezależna rekonstrukcja. Projekt nie ma oryginalnego kodu źródłowego.</p>
+        </details>
+        <details>
+          <summary>Jakie systemy są planowane?</summary>
+          <p>Planowane są współczesne systemy desktopowe. Lista pojawi się po testach w docelowym środowisku.</p>
+        </details>
+        <details>
+          <summary>Jak wierna będzie rekonstrukcja?</summary>
+          <p>Celem jest zgodność obrazu i zachowania. Rozszerzenia pozostają w osobnych pakietach.</p>
+        </details>
+        <details>
+          <summary>Czy OpenFA będzie obsługiwać mody?</summary>
+          <p>Tak. Format <code>.fapkg</code> zawiera wyłącznie wersjonowane dane. Wersja 1 obsługuje katalogi budowy.</p>
+        </details>
+        <details>
+          <summary>Czy OpenFA jest rozwijany z użyciem AI?</summary>
+          <p>Tak. AI pomaga analizować zdekompilowany kod i łączyć dane. Ustalenia nadal wymagają oryginalnych źródeł lub powtarzalnych testów.</p>
+        </details>
+        <details>
+          <summary>Dlaczego rozwój przebiega seriami?</summary>
+          <p>To projekt rozwijany w wolnym czasie, głównie latem. Nie ma harmonogramu wydań.</p>
+        </details>
+        <details>
+          <summary>Kiedy zostanie opublikowany kod źródłowy?</summary>
+          <p>Nie ma jeszcze daty. Link pojawi się tutaj po otwarciu repozytorium.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <p class="eyebrow">Dziennik prac</p>
+      <h2>Przeczytaj notatki z rekonstrukcji</h2>
+      <p>Dziennik opisuje odtworzone formaty, decyzje implementacyjne i porównania z oryginalną grą.</p>
+      <a class="button button-primary" href="devlog/index.html">Przejdź do dziennika</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand footer-brand" href="#top"><img class="brand-mark" src="../favicon.png" alt="" width="864" height="864" loading="lazy" decoding="async"><span>OpenFA</span></a>
+      <p>Niezależny projekt rekonstrukcji.</p>
+      <p class="creator-credit">openFA by <span class="creator-ender">Ender</span><span class="creator-dev">DEV</span></p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/ender-dev-pl/openfa-docs" rel="external">Dokumentacja na GitHubie</a>
+      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Pobierz oryginalną grę</a>
+      <a href="devlog/index.html">Dziennik</a>
+    </div>
+    <p class="legal">
+      OpenFA jest nieoficjalnym, niezależnym projektem i nie jest powiązany ani wspierany przez pierwotnych twórców, wydawców lub obecnych właścicieli praw do <em>Fragile Allegiance</em>. Wszystkie znaki towarowe, nazwy i materiały z oryginalnej gry należą do odpowiednich właścicieli. Zrzuty ekranu z oryginalnej gry są prezentowane w celach identyfikacyjnych, badawczych i porównawczych.
+    </p>
+  </footer>
+</body>
+</html>

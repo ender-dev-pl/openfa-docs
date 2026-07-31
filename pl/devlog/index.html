@@ -1,0 +1,366 @@
+
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0d">
+  <meta name="description" content="Dziennik prac nad OpenFA: odtwarzanie formatów, systemów i oprawy Fragile Allegiance.">
+  <link rel="canonical" href="https://ender-dev-pl.github.io/openfa-docs/pl/devlog/">
+  <link rel="alternate" hreflang="en" href="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <link rel="alternate" hreflang="pl" href="https://ender-dev-pl.github.io/openfa-docs/pl/devlog/">
+  <link rel="alternate" hreflang="x-default" href="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenFA">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:title" content="Dziennik prac | OpenFA">
+  <meta property="og:description" content="Śledź dowody stojące za OpenFA: odtworzone formaty, zapisane światy, rendering i symulację.">
+  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
+  <meta property="og:image:width" content="1283">
+  <meta property="og:image:height" content="509">
+  <meta property="og:image:alt" content="Mapa strategiczna Fragile Allegiance i rekonstrukcja OpenFA pokazane obok siebie">
+  <meta property="og:url" content="https://ender-dev-pl.github.io/openfa-docs/pl/devlog/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dziennik prac | OpenFA">
+  <meta name="twitter:description" content="Odtworzone formaty, zapisane światy, rendering i symulacja w rekonstrukcji Fragile Allegiance.">
+  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
+  <meta name="twitter:image:alt" content="Mapa strategiczna Fragile Allegiance i rekonstrukcja OpenFA pokazane obok siebie">
+  <title>Dziennik prac | OpenFA</title>
+  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Strona główna OpenFA">
+      <img class="brand-mark" src="../../favicon.png" alt="" width="864" height="864" decoding="async">
+      <span>OpenFA</span>
+    </a>
+    <nav class="site-nav" aria-label="Główna nawigacja">
+      <a href="../index.html#original-game">Gra</a>
+      <a href="../index.html#reconstruction">OpenFA</a>
+      <a href="../index.html#progress">Postęp</a>
+      <a href="index.html" aria-current="page">Dziennik</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a class="language-switch" href="../../devlog/index.html" hreflang="en" lang="en" aria-label="Przejdź do wersji angielskiej">EN</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <p class="eyebrow">Dziennik prac</p>
+      <h1>Notatki z badań<br> i implementacji</h1>
+      <p>
+        Notatki techniczne o odtworzonym zachowaniu, implementacji i otwartych pytaniach.
+      </p>
+      <p class="page-hero-note">
+        OpenFA to projekt rozwijany w wolnym czasie, bez harmonogramu wydań.
+      </p>
+      <div class="journal-key" aria-label="Oznaczenia wiarygodności ustaleń">
+        <span><strong>Potwierdzone</strong> Bezpośrednio poparte kodem, danymi, zapisem lub kadrem z gry.</span>
+        <span><strong>Wnioskowane</strong> Zgodne z obserwacją, ale bez bezpośredniego dowodu.</span>
+        <span><strong>Nieznane</strong> Nieustalone.</span>
+      </div>
+    </section>
+
+    <div class="journal-layout">
+      <aside class="journal-nav" aria-label="Wpisy w dzienniku">
+        <p class="label">Wpisy</p>
+        <a href="#strategic-map"><span>31 lip &rsquo;26</span>Mapa strategiczna</a>
+        <a href="#saved-world"><span>30 lip &rsquo;26</span>Rozpakowany zapisany świat</a>
+        <a href="#asteroid-relief"><span>27 lip &rsquo;26</span>Rzeźba terenu przed dekoracją</a>
+        <a href="#original-interface"><span>16 lip &rsquo;26</span>Poznawanie interfejsu</a>
+        <a href="#foundations"><span>16 lip &rsquo;26</span>Budowa fundamentów</a>
+        <a href="#origin"><span>23 wrz &rsquo;23</span>Pierwszy zdekodowany obraz</a>
+      </aside>
+
+      <div class="journal-entries">
+        <article class="journal-entry" id="strategic-map">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-31">31 lipca 2026</time> · Rendering</p>
+            <h2>Powrót mapy strategicznej</h2>
+            <p class="entry-lead">
+              Mapa strategiczna korzysta już z odtworzonej geometrii i rzeczywistego zapisu.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../../assets/images/comparison-map.png" alt="Mapa strategiczna z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1283" height="509" decoding="async" fetchpriority="high">
+            <figcaption><strong>Oryginał / OpenFA</strong> Ten sam stan mapy strategicznej wyrenderowany obok siebie.</figcaption>
+          </figure>
+
+          <p>
+            Oryginał ma dopasowany widok całego sektora i powiększenie 8 na 5 pól. Skala jest kwantowana; zapis referencyjny daje odstęp pól 21 pikseli.
+          </p>
+          <p>
+            Rendering i wykrywanie kliknięć korzystają z tej samej geometrii. Rozmiar, właściciel i sensory pochodzą z zapisanego modelu.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Potwierdzony wynik</p>
+            <p>Początek mapy i odstęp pól są zgodne; środki asteroid różnią się najwyżej o jeden piksel.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="saved-world">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-30">30 lipca 2026</time> · Archeologia symulacji</p>
+            <h2>Rozpakowany zapisany świat</h2>
+            <p class="entry-lead">
+              Zapisy ujawniają stan symulacji niewidoczny podczas gry.
+            </p>
+          </header>
+
+          <p>
+            Importer weryfikuje graf alokacji i odczytuje typowane rekordy asteroid, frakcji, budynków, statków, personelu, dyplomacji i symulacji.
+          </p>
+          <p>
+            Kolonie referencyjne są ładowane z oryginalnych relacji, nie z danych demonstracyjnych. Nieznane bajty są zachowywane bezstratnie.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Wpływ na implementację</p>
+            <p>Renderer, prezenter i symulacja korzystają z tego samego zapisanego świata.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="asteroid-relief">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-27">27 lipca 2026</time> · Renderowanie świata</p>
+            <h2>Rzeźba terenu przed dekoracją</h2>
+            <p class="entry-lead">
+              Teren, maski, siatka i dostępność budowy są osobnymi stanami.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../../assets/images/comparison-grid.png" alt="Siatka budowy z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1290" height="511" loading="lazy" decoding="async">
+            <figcaption><strong>Oryginał / OpenFA</strong> Ta sama zapisana mapa budowy użyta do porównania rzeźby terenu, projekcji i zablokowanych pól.</figcaption>
+          </figure>
+
+          <p>
+            Odtworzona kolejność: tło, ziarno terenu, rzeźba, detal powierzchni i kompozycja palety.
+          </p>
+          <p>
+            Mapa budowy jest zachowywana bit po bicie. Maski renderera korzystają z osobnego stanu.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Zasada pracy</p>
+            <p>Zmiany wizualne wymagają porównania kadru w docelowym kliencie.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="original-interface">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-16">16 lipca 2026</time> · Kadry referencyjne</p>
+            <h2>Ponowne poznawanie interfejsu</h2>
+            <p class="entry-lead">
+              Prace nad interfejsem zaczynają się od kadrów, stanów i działania kontrolek.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../../assets/images/comparison-building.png" alt="Katalog budowy z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1289" height="513" loading="lazy" decoding="async">
+            <figcaption><strong>Oryginał / OpenFA</strong> Wybór, zawartość i nawigacja katalogu budowy porównane obok siebie.</figcaption>
+          </figure>
+
+          <p>
+            Zestaw referencyjny obejmuje ekran główny, mapę, budowę, Sci-Tek, badania, statki, finanse, personel i raporty. Ukryte mechaniki wymagają kodu lub śladu działania.
+          </p>
+          <p>
+            Ekrany korzystają z MVP: stan modelu, akcje prezentera i wymienny widok. Renderer nie przechowuje nawigacji ani sztucznego stanu gry.
+          </p>
+        </article>
+
+        <article class="journal-entry" id="foundations">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-16">16 lipca 2026</time> · Fundamenty projektu</p>
+            <h2>Budowa fundamentów</h2>
+            <p class="entry-lead">
+              Podstawowe granice: deterministyczna symulacja, legalny import zasobów i wymienny klient.
+            </p>
+          </header>
+
+          <p>
+            Model domenowy jest niezależny od plików, grafiki i wejścia. Symulacja używa stałych taktów, uporządkowanych poleceń i jawnego stanu losowego.
+          </p>
+          <p>
+            Zasoby są importowane z legalnej instalacji. Repozytorium i wydania nie zawierają komercyjnych danych gry.
+          </p>
+          <p>
+            OpenFA ładuje standardową zawartość deklaratywną z wersjonowanego archiwum <code>.fapkg</code>. Rozszerzenia zawierają tylko dane i są porządkowane według stałego priorytetu oraz identyfikatora.
+          </p>
+          <p>
+            AI pomaga analizować dekompilat. Testy odtwarzają przypadki zasobów, zapisów i symulacji; wygenerowane wyjaśnienia pozostają hipotezami.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Wpływ architektoniczny</p>
+            <p>OpenRA wpłynął na rozdzielenie symulacji, zawartości i prezentacji.</p>
+         </div>
+       </article>
+        <article class="journal-entry origin-entry" id="origin">
+          <header>
+            <p class="devlog-date"><time datetime="2023-09-23">23 września 2023</time> · Początek</p>
+            <h2>Pierwszy zdekodowany obraz</h2>
+            <p class="entry-lead">
+              OpenFA zaczęło się od dekodera grafiki oryginalnego intra.
+            </p>
+          </header>
+
+          <div class="origin-signal" aria-label="Pierwszy eksperyment OpenFA dekodował proste pliki 256 w Pythonie">
+            <span>Fragile Allegiance</span>
+            <strong>.256</strong>
+            <span>Dekoder w Pythonie</span>
+            <strong>piksele</strong>
+          </div>
+
+          <p>
+            23 września 2023 roku skrypt w Pythonie zdekodował proste pliki <code>.256</code>
+            z intra gry. Pełna rekonstrukcja <em>Fragile Allegiance</em> nie była wtedy planowana.
+          </p>
+
+          <section class="history-artifacts" aria-labelledby="history-artifacts-title">
+            <p class="eyebrow">Artefakty badań oryginalnej gry</p>
+            <h3 id="history-artifacts-title">Wyniki pierwszych eksperymentów z dekoderem</h3>
+            <p class="history-artifacts-intro">
+              Wczesne wyniki dekodera: błędne palety, testy przesunięć i końcowa konwersja VGA.
+            </p>
+
+            <div class="history-gallery">
+              <figure class="framed-media">
+                <a href="../../assets/images/history-first-decode.png" aria-label="Otwórz pierwszy wynik dekodera w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-first-decode.png" alt="Wczesny zdekodowany obraz intra Fragile Allegiance z bardzo błędnymi kolorami" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Pierwszy rozpoznawalny wynik</strong> Geometria odczytana; paleta błędna.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../../assets/images/history-offset-0.png" aria-label="Otwórz eksperyment z zerowym przesunięciem palety w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-offset-0.png" alt="Obraz intra Fragile Allegiance utworzony podczas testu zerowego przesunięcia palety" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Eksperyment z przesunięciem palety: 0</strong> Test początku palety: przesunięcie 0.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../../assets/images/history-offset-5.png" aria-label="Otwórz eksperyment z przesunięciem palety o pięć w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-offset-5.png" alt="Obraz intra Fragile Allegiance utworzony podczas testu przesunięcia palety o pięć" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Eksperyment z przesunięciem palety: 5</strong> Test początku palety: przesunięcie 5.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../../assets/images/history-offset-9.png" aria-label="Otwórz eksperyment z przesunięciem palety o dziewięć w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-offset-9.png" alt="Obraz intra Fragile Allegiance utworzony podczas testu przesunięcia palety o dziewięć" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Eksperyment z przesunięciem palety: 9</strong> Test początku palety: przesunięcie 9.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../../assets/images/history-vga-scaling.png" aria-label="Otwórz wczesny wynik skalowania VGA w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-vga-scaling.png" alt="Późna eksperymentalna konwersja obrazu intra z przesyconymi kolorami VGA" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Błędna konwersja VGA</strong> Kanały sześciobitowe są skalowane nieprawidłowo, co daje przesycone kolory.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../../assets/images/history-front-recovered.png" aria-label="Otwórz prawidłowo odtworzony obraz intra w pełnej rozdzielczości">
+                  <img src="../../assets/images/history-front-recovered.png" alt="Obraz intra Fragile Allegiance odtworzony z prawidłową paletą i skalowaniem VGA" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Odtworzony FRONT.256</strong> Poprawne przesunięcia, paleta i skalowanie VGA.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="research-history" aria-labelledby="research-history-title">
+            <p class="eyebrow">Kalendarium wczesnych badań</p>
+            <h3 id="research-history-title">Od jednego pliku do potoku renderowania</h3>
+
+            <div class="research-timeline">
+              <article>
+                <time datetime="2023-09-23">23 września 2023</time>
+                <div>
+                  <h4>Pierwszy eksperyment</h4>
+                  <p>Dekoder prostych plików intra <code>.256</code> w Pythonie.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-02">2 listopada 2023</time>
+                <div>
+                  <h4>Udokumentowana struktura pliku</h4>
+                  <p>Pierwszy opis pól i granic formatu <code>.256</code>.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-02">2 listopada 2023</time>
+                <div>
+                  <h4>Loader odnaleziony w pliku wykonywalnym</h4>
+                  <p>IDA Pro lokalizuje i dekompiluje fragment loadera odwołujący się do pliku intra.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-03">3 listopada 2023</time>
+                <div>
+                  <h4>Działający dekoder</h4>
+                  <p>Dekoder tworzy użyteczne obrazy; próba kodowania PNG do <code>.256</code> testuje format w drugą stronę.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2024-05-29">29 maja 2024</time>
+                <div>
+                  <h4>Potwierdzone przesunięcia, paleta i skalowanie VGA</h4>
+                  <p>Zweryfikowano przesunięcia i <code>PALETTE</code> wraz z konwersją sześciobitowych kanałów VGA.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2026-07">lipiec 2026</time>
+                <div>
+                  <h4>Renderer i teren proceduralny</h4>
+                  <p>Badania obejmują teren, rzeźbę, dithering, maski, palety i kolejność kompozycji.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <p>
+            Dekoder doprowadził do prac nad paletami, kompresją, animacją, zapisami i zachowaniem gry.
+          </p>
+          <p>
+            Obecna baza kodu powstała później; pliki z 2023 roku nadal służą jako referencje.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Pierwszy wynik</p>
+            <p>Pierwsze działające narzędzie badawcze OpenFA.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <section class="closing-section compact-closing">
+      <p class="eyebrow">Aktualizacje projektu</p>
+      <h2>Nowe wpisy będą dodawane po weryfikacji prac</h2>
+      <p>Aktualizacje pojawią się tutaj i w repozytorium.</p>
+      <div class="hero-actions centered-actions">
+        <a class="button button-primary" href="../index.html">Opis OpenFA</a>
+        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-docs" rel="external">Zobacz na GitHubie</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand footer-brand" href="../index.html"><img class="brand-mark" src="../../favicon.png" alt="" width="864" height="864" loading="lazy" decoding="async"><span>OpenFA</span></a>
+      <p>Niezależny projekt rekonstrukcji.</p>
+      <p class="creator-credit">openFA by <span class="creator-ender">Ender</span><span class="creator-dev">DEV</span></p>
+    </div>
+    <div class="footer-links">
+      <a href="../index.html">Opis projektu</a>
+      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Pobierz oryginalną grę</a>
+    </div>
+    <p class="legal">
+      OpenFA jest nieoficjalnym, niezależnym projektem i nie jest powiązany ani wspierany przez pierwotnych twórców, wydawców lub obecnych właścicieli praw do <em>Fragile Allegiance</em>. Wszystkie znaki towarowe, nazwy i materiały z oryginalnej gry należą do odpowiednich właścicieli. Zrzuty ekranu i zdekodowane artefakty wizualne z oryginalnej gry są prezentowane w celach identyfikacyjnych, badawczych i porównawczych.
+    </p>
+  </footer>
+</body>
+</html>

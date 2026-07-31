@@ -1,0 +1,373 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0d">
+  <meta name="description" content="The OpenFA development journal: recovering the formats, systems and presentation of Fragile Allegiance.">
+  <link rel="canonical" href="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <link rel="alternate" hreflang="en" href="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <link rel="alternate" hreflang="pl" href="https://ender-dev-pl.github.io/openfa-docs/pl/devlog/">
+  <link rel="alternate" hreflang="x-default" href="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenFA">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="pl_PL">
+  <meta property="og:title" content="Devlog | OpenFA">
+  <meta property="og:description" content="Follow the evidence behind OpenFA: recovered formats, saved worlds, rendering and simulation.">
+  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
+  <meta property="og:image:width" content="1283">
+  <meta property="og:image:height" content="509">
+  <meta property="og:image:alt" content="The Fragile Allegiance strategic map and the OpenFA reconstruction shown side by side">
+  <meta property="og:url" content="https://ender-dev-pl.github.io/openfa-docs/devlog/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Devlog | OpenFA">
+  <meta name="twitter:description" content="Recovered formats, saved worlds, rendering and simulation from the OpenFA reconstruction of Fragile Allegiance.">
+  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
+  <meta name="twitter:image:alt" content="The Fragile Allegiance strategic map and the OpenFA reconstruction shown side by side">
+  <title>Devlog | OpenFA</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="OpenFA home">
+      <img class="brand-mark" src="../favicon.png" alt="" width="864" height="864" decoding="async">
+      <span>OpenFA</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../index.html#original-game">The game</a>
+      <a href="../index.html#reconstruction">OpenFA</a>
+      <a href="../index.html#progress">Progress</a>
+      <a href="index.html" aria-current="page">Devlog</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a class="language-switch" href="../pl/devlog/index.html" hreflang="pl" lang="pl" aria-label="Przejdź do polskiej wersji">PL</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <p class="eyebrow">Development journal</p>
+      <h1>Research and<br> implementation notes</h1>
+      <p>
+        Technical notes on recovered behaviour, implementation and open questions.
+      </p>
+      <p class="page-hero-note">
+        OpenFA is a spare-time project with no fixed release schedule.
+      </p>
+      <div class="journal-key" aria-label="Evidence terminology">
+        <span><strong>Confirmed</strong> Supported directly by code, data, saves or runtime capture.</span>
+        <span><strong>Inferred</strong> Matches observations but lacks direct proof.</span>
+        <span><strong>Unknown</strong> Not established.</span>
+      </div>
+    </section>
+
+    <div class="journal-layout">
+      <aside class="journal-nav" aria-label="Devlog entries">
+        <p class="label">Entries</p>
+        <a href="#strategic-map"><span>31 Jul &rsquo;26</span>The strategic map returns</a>
+        <a href="#saved-world"><span>30 Jul &rsquo;26</span>A saved world, unpacked</a>
+        <a href="#asteroid-relief"><span>27 Jul &rsquo;26</span>Relief before decoration</a>
+        <a href="#original-interface"><span>16 Jul &rsquo;26</span>Learning the interface</a>
+        <a href="#foundations"><span>16 Jul &rsquo;26</span>Laying the foundations</a>
+        <a href="#origin"><span>23 Sep &rsquo;23</span>The first decoded image</a>
+      </aside>
+
+      <div class="journal-entries">
+        <article class="journal-entry" id="strategic-map">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-31">31 July 2026</time> · Rendering</p>
+            <h2>The strategic map returns</h2>
+            <p class="entry-lead">
+              The strategic map now uses recovered geometry and real saved state.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../assets/images/comparison-map.png" alt="Original Fragile Allegiance strategic map beside the OpenFA reconstruction" width="1283" height="509" decoding="async" fetchpriority="high">
+            <figcaption><strong>Original / OpenFA</strong> The same strategic-map state rendered side by side.</figcaption>
+          </figure>
+
+          <p>
+            The original has a fitted full-sector view and an 8 by 5 cell zoom. Scale is quantised; the reference save produces a 21-pixel cell pitch.
+          </p>
+          <p>
+            Rendering and hit testing share this geometry. Size, ownership and sensors come from saved model state.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Confirmed result</p>
+            <p>Map origin and cell pitch match; zoomed asteroid centres differ by at most one pixel.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="saved-world">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-30">30 July 2026</time> · Simulation archaeology</p>
+            <h2>A saved world, unpacked</h2>
+            <p class="entry-lead">
+              Saves expose simulation state that is not visible during play.
+            </p>
+          </header>
+
+          <p>
+            The importer validates the allocation graph and reads typed records for asteroids, factions, buildings, ships, personnel, diplomacy and simulation state.
+          </p>
+          <p>
+            Reference colonies are loaded from original relationships, not demo data. Unknown bytes are preserved losslessly.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Effect on implementation</p>
+            <p>Renderer, presenter and simulation use the same saved world.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="asteroid-relief">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-27">27 July 2026</time> · World rendering</p>
+            <h2>Relief before decoration</h2>
+            <p class="entry-lead">
+              Terrain, masks, grid and construction availability are separate states.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../assets/images/comparison-grid.png" alt="Original Fragile Allegiance construction grid beside the OpenFA reconstruction" width="1290" height="511" loading="lazy" decoding="async">
+            <figcaption><strong>Original / OpenFA</strong> The same saved construction map used to compare relief, projection and blocked cells.</figcaption>
+          </figure>
+
+          <p>
+            Recovered order: background, terrain seed, radial profiles, relief, surface detail, palette composition.
+          </p>
+          <p>
+            The saved construction map is kept bit-for-bit. Renderer masks use separate state.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Working rule</p>
+            <p>Visual changes require a target-client frame comparison.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="original-interface">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-16">16 July 2026</time> · Reference capture</p>
+            <h2>Learning the interface again</h2>
+            <p class="entry-lead">
+              The interface work starts from captured screens, states and control behaviour.
+            </p>
+          </header>
+
+          <figure class="framed-media entry-media">
+            <img src="../assets/images/comparison-building.png" alt="Original Fragile Allegiance construction catalogue beside the OpenFA reconstruction" width="1289" height="513" loading="lazy" decoding="async">
+            <figcaption><strong>Original / OpenFA</strong> Construction catalogue selection, content and navigation compared side by side.</figcaption>
+          </figure>
+
+          <p>
+            The reference set covers the front end, map, construction, Sci-Tek, surveys, ships, finances, personnel and reports. Hidden mechanics require code or runtime evidence.
+          </p>
+          <p>
+            Screens use MVP: model state, presenter actions and a replaceable view. The renderer holds no navigation or fake game state.
+          </p>
+        </article>
+
+        <article class="journal-entry" id="foundations">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-16">16 July 2026</time> · Project foundation</p>
+            <h2>Laying the foundations</h2>
+            <p class="entry-lead">
+              Core boundaries: deterministic simulation, legal asset import and a replaceable client.
+            </p>
+          </header>
+
+          <p>
+            The domain model is independent of files, graphics and input. Simulation uses fixed ticks, ordered commands and explicit random state.
+          </p>
+          <p>
+            Assets are imported from a legal installation. The repository and releases do not contain commercial game data.
+          </p>
+          <p>
+            OpenFA loads standard declarative content from a versioned <code>.fapkg</code>
+            archive. Extensions are data-only and ordered by stable priority and ID.
+          </p>
+          <p>
+            AI helps navigate the decompilation. Tests replay asset, save and simulation cases; generated explanations remain hypotheses.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Architectural influence</p>
+            <p>OpenRA influenced the separation of simulation, content and presentation.</p>
+         </div>
+       </article>
+        <article class="journal-entry origin-entry" id="origin">
+          <header>
+            <p class="devlog-date"><time datetime="2023-09-23">23 September 2023</time> · The beginning</p>
+            <h2>The first decoded image</h2>
+            <p class="entry-lead">
+              OpenFA began with a decoder for the original intro graphics.
+            </p>
+          </header>
+
+          <div class="origin-signal" aria-label="The first OpenFA experiment decoded simple 256 files with Python">
+            <span>Fragile Allegiance</span>
+            <strong>.256</strong>
+            <span>Python decoder</span>
+            <strong>pixels</strong>
+          </div>
+
+          <p>
+            On 23 September 2023, a Python script decoded simple <code>.256</code>
+            files from the game intro. A full reconstruction of
+            <em>Fragile Allegiance</em> was not yet planned.
+          </p>
+
+          <section class="history-artifacts" aria-labelledby="history-artifacts-title">
+            <p class="eyebrow">Original-game research artefacts</p>
+            <h3 id="history-artifacts-title">Results from the first decoder experiments</h3>
+            <p class="history-artifacts-intro">
+              Early decoder output: incorrect palettes, offset tests and the final VGA conversion.
+            </p>
+
+            <div class="history-gallery">
+              <figure class="framed-media">
+                <a href="../assets/images/history-first-decode.png" aria-label="Open the full-resolution first decoder result">
+                  <img src="../assets/images/history-first-decode.png" alt="An early decoded Fragile Allegiance intro image with severely incorrect colours" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>First recognisable decode</strong> Geometry decoded; palette incorrect.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../assets/images/history-offset-0.png" aria-label="Open the full-resolution palette offset zero experiment">
+                  <img src="../assets/images/history-offset-0.png" alt="Fragile Allegiance intro image produced while testing palette offset zero" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Palette offset experiment 0</strong> Testing palette start offset 0.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../assets/images/history-offset-5.png" aria-label="Open the full-resolution palette offset five experiment">
+                  <img src="../assets/images/history-offset-5.png" alt="Fragile Allegiance intro image produced while testing palette offset five" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Palette offset experiment 5</strong> Testing palette start offset 5.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../assets/images/history-offset-9.png" aria-label="Open the full-resolution palette offset nine experiment">
+                  <img src="../assets/images/history-offset-9.png" alt="Fragile Allegiance intro image produced while testing palette offset nine" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Palette offset experiment 9</strong> Testing palette start offset 9.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../assets/images/history-vga-scaling.png" aria-label="Open the full-resolution early VGA scaling result">
+                  <img src="../assets/images/history-vga-scaling.png" alt="A late experimental conversion of the intro image with oversaturated VGA colours" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Incorrect VGA conversion</strong> Six-bit channels are scaled incorrectly, producing oversaturated colours.</figcaption>
+              </figure>
+              <figure class="framed-media">
+                <a href="../assets/images/history-front-recovered.png" aria-label="Open the full-resolution correctly recovered intro image">
+                  <img src="../assets/images/history-front-recovered.png" alt="The Fragile Allegiance intro image recovered with the correct palette and VGA scaling" width="640" height="480" loading="lazy" decoding="async">
+                </a>
+                <figcaption><strong>Recovered FRONT.256</strong> Correct offsets, palette and VGA scaling.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="research-history" aria-labelledby="research-history-title">
+            <p class="eyebrow">Early research timeline</p>
+            <h3 id="research-history-title">From one file to the rendering pipeline</h3>
+
+            <div class="research-timeline">
+              <article>
+                <time datetime="2023-09-23">23 September 2023</time>
+                <div>
+                  <h4>The first experiment</h4>
+                  <p>Python decoder for simple <code>.256</code> intro files.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-02">2 November 2023</time>
+                <div>
+                  <h4>File structure documented</h4>
+                  <p>First documented <code>.256</code> fields and data boundaries.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-02">2 November 2023</time>
+                <div>
+                  <h4>Loader located in the executable</h4>
+                  <p>IDA Pro locates and decompiles the loader fragment referencing the intro file.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2023-11-03">3 November 2023</time>
+                <div>
+                  <h4>A working decoder</h4>
+                  <p>Decoder produces usable images; PNG-to-<code>.256</code> encoding tests the format in reverse.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2024-05-29">29 May 2024</time>
+                <div>
+                  <h4>Offsets, palette and VGA scaling confirmed</h4>
+                  <p>File offsets and <code>PALETTE</code> are verified, including six-bit VGA conversion.</p>
+                </div>
+              </article>
+              <article>
+                <time datetime="2026-07">July 2026</time>
+                <div>
+                  <h4>Renderer and procedural terrain</h4>
+                  <p>Research expands to terrain, relief, dithering, masks, palettes and composition order.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <p>
+            The decoder led to work on palettes, compression, animation, saves and game behaviour.
+          </p>
+          <p>
+            The current codebase came later; the 2023 files remain decoder references.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Initial result</p>
+            <p>First working OpenFA research tool.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <section class="closing-section compact-closing">
+      <p class="eyebrow">Project updates</p>
+      <h2>More entries will be added as work is verified</h2>
+      <p>See the project overview or repository for updates.</p>
+      <div class="hero-actions centered-actions">
+        <a class="button button-primary" href="../index.html">OpenFA overview</a>
+        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-docs" rel="external">View on GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand footer-brand" href="../index.html"><img class="brand-mark" src="../favicon.png" alt="" width="864" height="864" loading="lazy" decoding="async"><span>OpenFA</span></a>
+      <p>An independent reconstruction project.</p>
+      <p class="creator-credit">openFA by <span class="creator-ender">Ender</span><span class="creator-dev">DEV</span></p>
+    </div>
+    <div class="footer-links">
+      <a href="../index.html">Project overview</a>
+      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Get the original game</a>
+    </div>
+    <p class="legal">
+      OpenFA is an unofficial, independent project and is not affiliated with or
+      endorsed by the original developers, publishers or current rights holders
+      of <em>Fragile Allegiance</em>. All trademarks, names and original game
+      materials belong to their respective owners. Original-game screenshots
+      and decoded visual artefacts are shown for identification, research
+      commentary and visual comparison.
+    </p>
+  </footer>
+</body>
+</html>
