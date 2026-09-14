@@ -15,17 +15,17 @@
   <meta property="og:locale" content="pl_PL">
   <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:title" content="Dziennik prac | OpenFA">
-  <meta property="og:description" content="Śledź dowody stojące za OpenFA: odtworzone formaty, zapisane światy, rendering i symulację.">
-  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
-  <meta property="og:image:width" content="1283">
-  <meta property="og:image:height" content="509">
-  <meta property="og:image:alt" content="Mapa strategiczna Fragile Allegiance i rekonstrukcja OpenFA pokazane obok siebie">
+  <meta property="og:description" content="Potwierdzone etapy OpenFA: odtworzone elementy oryginalnej gry, publiczne wersje preview i nowe rozszerzenia.">
+  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/devlog-asteroid-engines.png">
+  <meta property="og:image:width" content="640">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="Odtworzony ekran sterowania Asteroid Engines działający w OpenFA">
   <meta property="og:url" content="https://ender-dev-pl.github.io/openfa-docs/pl/devlog/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dziennik prac | OpenFA">
-  <meta name="twitter:description" content="Odtworzone formaty, zapisane światy, rendering i symulacja w rekonstrukcji Fragile Allegiance.">
-  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
-  <meta name="twitter:image:alt" content="Mapa strategiczna Fragile Allegiance i rekonstrukcja OpenFA pokazane obok siebie">
+  <meta name="twitter:description" content="Potwierdzone etapy rekonstrukcji i rozszerzania Fragile Allegiance w OpenFA.">
+  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/devlog-asteroid-engines.png">
+  <meta name="twitter:image:alt" content="Odtworzony ekran sterowania Asteroid Engines działający w OpenFA">
   <title>Dziennik prac | OpenFA</title>
   <link rel="icon" type="image/png" href="../../favicon.png">
   <link rel="apple-touch-icon" href="../../favicon.png">
@@ -52,9 +52,9 @@
   <main id="main">
     <section class="page-hero">
       <p class="eyebrow">Dziennik prac</p>
-      <h1>Notatki z badań<br> i implementacji</h1>
+      <h1>Potwierdzone etapy<br> projektu</h1>
       <p>
-        Notatki techniczne o odtworzonym zachowaniu, implementacji i otwartych pytaniach.
+        Krótkie informacje o odtworzonym zachowaniu i działających systemach gry.
       </p>
       <p class="page-hero-note">
         OpenFA to projekt rozwijany w wolnym czasie, bez harmonogramu wydań.
@@ -69,138 +69,470 @@
     <div class="journal-layout">
       <aside class="journal-nav" aria-label="Wpisy w dzienniku">
         <p class="label">Wpisy</p>
-        <a href="#strategic-map"><span>31 lip &rsquo;26</span>Mapa strategiczna</a>
-        <a href="#saved-world"><span>30 lip &rsquo;26</span>Rozpakowany zapisany świat</a>
-        <a href="#asteroid-relief"><span>27 lip &rsquo;26</span>Rzeźba terenu przed dekoracją</a>
-        <a href="#original-interface"><span>16 lip &rsquo;26</span>Poznawanie interfejsu</a>
-        <a href="#foundations"><span>16 lip &rsquo;26</span>Budowa fundamentów</a>
+        <a href="#trade-teaser"><span>Teaser</span>Handel może się zmienić</a>
+        <a href="#asteroid-engines"><span>13 wrz &rsquo;26</span>Odtworzone Asteroid Engines</a>
+        <a href="#first-community-feedback"><span>11&ndash;13 wrz &rsquo;26</span>Pierwsza pętla feedbacku społeczności</a>
+        <a href="#huge-maps"><span>10 wrz &rsquo;26</span>Ogromne mapy</a>
+        <a href="#ofapkg-missiles"><span>10 wrz &rsquo;26</span>Pakiety rozszerzają rozgrywkę</a>
+        <a href="#surface-information-layers"><span>8 wrz &rsquo;26</span>Warstwy informacji na powierzchni</a>
+        <a href="#legacy-networking"><span>3 wrz &rsquo;26</span>Jak działał multiplayer oryginału</a>
+        <a href="#first-public-preview"><span>1 wrz &rsquo;26</span>Pierwsze publiczne wydanie 0.370</a>
+        <a href="#ofapkg-extension-system"><span>31 sie &rsquo;26</span>.ofapkg staje się systemem rozszerzeń</a>
+        <a href="#tutorial-2-complete"><span>23 sie &rsquo;26</span>Tutorial 2 ukończony</a>
+        <a href="#tutorial-1-complete"><span>18 sie &rsquo;26</span>Tutorial 1 ukończony</a>
+        <a href="#tutorial-1-construction"><span>13 sie &rsquo;26</span>Tutorial 1: budowa kolonii</a>
+        <a href="#tutorial-1-funds"><span>6 sie &rsquo;26</span>Tutorial 1: mapa i finanse</a>
+        <a href="#first-world"><span>31 lip &rsquo;26</span>Pierwszy odtworzony świat</a>
+        <a href="#foundations"><span>16 lip &rsquo;26</span>Fundamenty rekonstrukcji</a>
         <a href="#origin"><span>23 wrz &rsquo;23</span>Pierwszy zdekodowany obraz</a>
       </aside>
 
       <div class="journal-entries">
-        <article class="journal-entry" id="strategic-map">
+        <article class="journal-entry" id="trade-teaser">
+          <p class="eyebrow">Rzut oka na możliwą przyszłość</p>
           <header>
-            <p class="devlog-date"><time datetime="2026-07-31">31 lipca 2026</time> · Rendering</p>
-            <h2>Powrót mapy strategicznej</h2>
+            <h2>Może handlarze nie zawsze będą dostępni tylko z menu.</h2>
             <p class="entry-lead">
-              Mapa strategiczna korzysta już z odtworzonej geometrii i rzeczywistego zapisu.
+              Sposób, w jaki działa handel w OpenFA, może kiedyś wyglądać zupełnie inaczej.
             </p>
           </header>
 
-          <figure class="framed-media entry-media">
-            <img src="../../assets/images/comparison-map.png" alt="Mapa strategiczna z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1283" height="509" decoding="async" fetchpriority="high">
-            <figcaption><strong>Oryginał / OpenFA</strong> Ten sam stan mapy strategicznej wyrenderowany obok siebie.</figcaption>
-          </figure>
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-trade-marketplace-docking.png" aria-label="Otwórz teaser dokowania przy centrum handlowym w pełnej rozdzielczości"><img src="../../assets/images/devlog-trade-marketplace-docking.png" alt="Powierzchnia asteroidy OpenFA z kilkoma statkami handlowymi zadokowanymi przy wysokim centrum handlowym" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Coś właśnie dokuje&hellip;</strong></figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-trade-marketplace-visitors.png" aria-label="Otwórz teaser różnych gości przy centrum handlowym w pełnej rozdzielczości"><img src="../../assets/images/devlog-trade-marketplace-visitors.png" alt="Powierzchnia asteroidy OpenFA z różnymi typami statków odwiedzających to samo centrum handlowe" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>&hellip;i nie każdy gość wygląda tak samo.</strong></figcaption>
+            </figure>
+          </div>
+
+        </article>
+
+        <article class="journal-entry" id="asteroid-engines">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-13">13 września 2026</time> · Preview 0.495 · Rekonstrukcja oryginału</p>
+            <h2>Odtworzone Asteroid Engines</h2>
+            <p class="entry-lead">
+              Preview 0.495 przywraca działające sterowanie Asteroid Engines i pozwala naprawdę zmieniać ruch asteroidy.
+            </p>
+          </header>
 
           <p>
-            Oryginał ma dopasowany widok całego sektora i powiększenie 8 na 5 pól. Skala jest kwantowana; zapis referencyjny daje odstęp pól 21 pikseli.
+            Gracz może zmieniać kierunek asteroidy i moc silników z odtworzonego panelu, a mapa pokazuje wybraną asteroidę i jej wektor ruchu względem pobliskich obiektów.
           </p>
           <p>
-            Rendering i wykrywanie kliknięć korzystają z tej samej geometrii. Rozmiar, właściciel i sensory pochodzą z zapisanego modelu.
+            Przy okazji poprawiono także tempo poruszania się statków, flot i rakiet tak, aby odpowiadało oryginalnej grze. Ekran nie jest więc tylko odtworzonym interfejsem — jego przyciski faktycznie wpływają na świat gry.
           </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-asteroid-engines.png" aria-label="Otwórz ekran Asteroid Engines w pełnej rozdzielczości"><img src="../../assets/images/devlog-asteroid-engines.png" alt="Ekran Asteroid Engines w OpenFA pokazujący pobliskie asteroidy i wektor ruchu wybranego obiektu" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Asteroid Engines</strong> Sterowanie kierunkiem i mocą jest połączone z odtworzonym stanem ruchu strategicznego.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Publiczny preview 0.495</p>
+            <p>Asteroid Engines, komendy ruchu strategicznego i zlokalizowany ekran sterowania trafiają do preview z 13 września.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-community-feedback">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-11">11</time>&ndash;<time datetime="2026-09-13">13 września 2026</time> · Społeczność</p>
+            <h2>Pierwsze poprawki wynikające z feedbacku społeczności</h2>
+            <p class="entry-lead">
+              Preview 0.478 uruchomił pierwszą rzeczywistą rundę zewnętrznych testów OpenFA.
+            </p>
+          </header>
+
+          <p>
+            Gracze testujący build z 10 września zgłosili kilka problemów, które przeszły przez dotychczasowe replaye i testy regresyjne. Zgłoszenia zostały odtworzone, poprawione i włączone do kolejnego publicznego preview zamiast pozostać wyłącznie obserwacjami deweloperskimi.
+          </p>
+          <p>
+            Przejście z 0.478 do 0.495 jest tym samym pierwszą pełną publiczną pętlą feedbacku w projekcie: <strong>release &rarr; testy zewnętrzne &rarr; zgłoszone problemy &rarr; zweryfikowane poprawki &rarr; kolejny release</strong>.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Testy społeczności stają się częścią procesu</p>
+            <p>Preview 0.495 jest pierwszym buildem OpenFA zawierającym poprawki wynikające bezpośrednio z feedbacku użytkowników publicznych nightly.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="huge-maps">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-10">10 września 2026</time> · Rdzeń</p>
+            <h2>Ogromne mapy</h2>
+            <p class="entry-lead">
+              Światy OpenFA nie są już ograniczone skalą oryginalnej areny <em>Fragile Allegiance</em>.
+            </p>
+          </header>
+
+          <p>
+            Silnik mapy potrafi teraz obsługiwać obszary znacznie większe niż w oryginale. Płynna kamera i rozszerzony zoom pozwalają wygodnie poruszać się po takim świecie, a klasyczne mapy nadal działają tak jak wcześniej.
+          </p>
+          <p>
+            Większy świat jest rozszerzeniem OpenFA, a nie zamiennikiem oryginalnej skali: standardowe mapy pozostają poprawne, a własne scenariusze mogą rozrzucić asteroidy, floty i kolonie na znacznie większych odległościach.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-huge-maps.gif" aria-label="Otwórz pełną animację ogromnej mapy (16 MB)"><img src="../../assets/images/devlog-huge-maps-thumb.gif" alt="Animowana mapa strategiczna OpenFA pokazująca nawigację po znacznie większym świecie gry" width="640" height="478" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Większa przestrzeń strategiczna</strong> Natywne areny, płynna nawigacja i rozszerzony zoom obsługują światy dużo większe od oryginalnej areny.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Preview 0.478</p>
+            <p>Preview z 10 września jest pierwszym publicznym buildem udostępniającym fundament powiększonej mapy strategicznej.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="ofapkg-missiles">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-10">10 września 2026</time> · Preview 0.478 · Rozszerzenia pakietów</p>
+            <h2>Pakiety rozszerzają rozgrywkę, nie tylko katalogi</h2>
+            <p class="entry-lead">
+              System pakietów służy już do opcjonalnych mechanik i prezentacji, a nie tylko do odtwarzania katalogu zawartości oryginału.
+            </p>
+          </header>
+
+          <p>
+            Najbardziej czytelnymi przykładami są Interceptor Missile, który autonomicznie przechwytuje nadlatujące rakiety i może także atakować asteroidy, oraz Decoy Missile, rozdzielający się w pobliżu celu na cztery nieszkodliwe obiekty przeciążające obronę przeciwrakietową. Obie rakiety są dostarczane jako rozszerzenia <code>.ofapkg</code>, a nie jako część wpisana na stałe do podstawowej gry.
+          </p>
+          <p>
+            Preview 0.478 zawiera 12 pakietów <code>.ofapkg</code>, m.in. nowe rakiety, rzadkie asteroidy i dodatkowe warstwy informacji na powierzchni. To pierwszy publiczny build, w którym rozszerzenia OpenFA można wyraźnie zobaczyć podczas zwykłej gry.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-interceptor-missile.png" aria-label="Otwórz ekran budowy Interceptor Missile w pełnej rozdzielczości"><img src="../../assets/images/devlog-interceptor-missile.png" alt="Ekran Missile Construction w OpenFA pokazujący zdefiniowany w pakiecie Interceptor Missile" width="1280" height="956" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Interceptor Missile</strong> Nowa rakieta obronna dostarczana jako opcjonalne rozszerzenie.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-decoy-missile.png" aria-label="Otwórz ekran budowy Decoy Missile w pełnej rozdzielczości"><img src="../../assets/images/devlog-decoy-missile.png" alt="Ekran Missile Construction w OpenFA pokazujący zdefiniowany w pakiecie Decoy Missile" width="1280" height="956" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Decoy Missile</strong> Dwufazowa rakieta definiowana przez pakiet, tworząca przy celu cztery nieszkodliwe obiekty.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Granica rozszerzeń sprawdzona w rozgrywce</p>
+            <p>Nowe elementy rozgrywki można dodawać jako osobne pakiety, bez zmieniania podstawowej wersji Fragile Allegiance.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="surface-information-layers">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-08">8 września 2026</time> · Rozszerzenia pakietów</p>
+            <h2>Warstwy planowania i stanu powierzchni</h2>
+            <p class="entry-lead">
+              Opcjonalne warstwy HUD definiowane przez pakiety pokazują informacje, które w oryginalnym interfejsie były trudne do podejrzenia.
+            </p>
+          </header>
+
+          <p>
+            Warstwa planowania pokazuje na powierzchni informacje przydatne podczas gry: zasięg Screen Generatorów, miejsce zajmowane przez budynki, przeszkody, priorytety zasilania oraz konkretny powód, dla którego wybranego obiektu nie da się teraz postawić.
+          </p>
+          <p>
+            Drugi zestaw nakładek pokazuje postęp budowy i kondycję budynków, a także stan statków bezpośrednio w inwentarzu. Każdą z tych informacji można włączać niezależnie, a ich wyłączenie nie wpływa na samą rozgrywkę ani zapis gry.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-screen-coverage.png" aria-label="Otwórz warstwę ochrony Screen Generatora w pełnej rozdzielczości"><img src="../../assets/images/devlog-screen-coverage.png" alt="Powierzchnia asteroidy OpenFA z niebieską nakładką pokazującą zasięg ochrony Screen Generatora" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Ochrona ekranu</strong> Chronione pola powierzchni są widoczne jako warstwa informacyjna.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-build-diagnostics.png" aria-label="Otwórz HUD diagnostyki budowy w pełnej rozdzielczości"><img src="../../assets/images/devlog-build-diagnostics.png" alt="Widok rozmieszczania budynku w OpenFA pokazujący dostępne i wymagane fundusze" width="646" height="509" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Diagnostyka budowy</strong> HUD wyjaśnia, dlaczego wybranego budynku nie można obecnie postawić.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-building-progress.png" aria-label="Otwórz paski postępu budowy w pełnej rozdzielczości"><img src="../../assets/images/devlog-building-progress.png" alt="Kolonia OpenFA z paskami postępu nad budynkami w trakcie budowy" width="1287" height="968" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Postęp budowy</strong> Nakładki pakietowe mogą pokazywać stan prac na powierzchni.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-building-health.png" aria-label="Otwórz paski stanu budynków w pełnej rozdzielczości"><img src="../../assets/images/devlog-building-health.png" alt="Kolonia OpenFA z paskami stanu nad uszkodzonymi budynkami" width="1284" height="966" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Stan budynków</strong> Uszkodzenia można ocenić bez otwierania dodatkowego ekranu.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-ship-health.png" aria-label="Otwórz paski stanu statków w pełnej rozdzielczości"><img src="../../assets/images/devlog-ship-health.png" alt="Inwentarz statków OpenFA z kolorowymi paskami stanu pod ikonami poszczególnych jednostek" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Stan statków</strong> Kondycja poszczególnych jednostek jest widoczna bezpośrednio w inwentarzu.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Rozszerzenia tylko do odczytu</p>
+            <p>Nakładki tylko pokazują dodatkowe informacje. Nie zmieniają zasad działania oryginalnej gry.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="legacy-networking">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-03">3 września 2026</time> · Badanie oryginalnej gry</p>
+            <h2>Rozgryźliśmy, jak działał multiplayer oryginału</h2>
+            <p class="entry-lead">
+              Udało się odtworzyć sposób, w jaki oryginalny Fragile Allegiance utrzymywał kilku graczy w tej samej, zsynchronizowanej rozgrywce.
+            </p>
+          </header>
+
+          <p>
+            Wiemy już m.in. jak gracze dołączali do sesji, jak wybierany był komputer koordynujący grę, jak polecenia trafiały do wszystkich uczestników i jak gra próbowała wrócić do zgodnego stanu po problemach z synchronizacją. Zidentyfikowane zostały też stare sposoby połączenia używane przez wersję DOS.
+          </p>
+          <p>
+            Nie oznacza to jeszcze działającego multiplayera w OpenFA. Oznacza natomiast, że wiadomo już, jakie zachowanie trzeba odtworzyć, aby w przyszłości zbudować współczesną wersję gry sieciowej.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Odtworzone zachowanie protokołu</p>
+            <p>Przyszły multiplayer nie musi już powstawać metodą prób i błędów — jego najważniejsze zasady są znane.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-public-preview">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-01">1 września 2026</time> · Preview 0.370</p>
+            <h2>Pierwsze publiczne wydanie</h2>
+            <p class="entry-lead">
+              OpenFA po raz pierwszy wychodzi poza środowisko deweloperskie jako build do pobrania i testów społeczności.
+            </p>
+          </header>
+
+          <p>
+            Preview 0.370 jest jawnie publikowany jako niedokończony snapshot deweloperski. Na tym etapie można przejść mechaniki objęte tutorialami <em>Fragile Allegiance</em> 1&ndash;6, ale nadal należy oczekiwać niekompletnych systemów, regresji i różnic względem oryginału.
+          </p>
+          <p>
+            Preview wymaga lokalnie zainstalowanej legalnej kopii oryginalnej gry i korzysta z <code>First-Run.ps1</code> do wskazania jej zasobów. Repozytorium kodu źródłowego pozostaje na razie prywatne, a feedback i powtarzalne zgłoszenia błędów trafiają do publicznego projektu preview.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Początek publicznych testów</p>
+            <p>0.370 rozpoczyna linię wydań preview: grywalne snapshoty testowe bez przedstawiania rekonstrukcji jako gotowego produktu.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="ofapkg-extension-system">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-31">31 sierpnia 2026</time> · System rozszerzeń</p>
+            <h2><code>.ofapkg</code> wyrasta na pełny system modów i rozszerzeń</h2>
+            <p class="entry-lead">
+              Pakiety zaczynały jako sposób na opisanie katalogu budowy. Teraz potrafią znacznie więcej.
+            </p>
+          </header>
+
+          <p>
+            Budynki, statki, floty, rakiety, rudy, badania, handel, personel i scenariusze nie muszą już być wpisane na stałe do jednej wersji gry. OpenFA może pobierać ich definicje z aktywnych pakietów, a wraz z nimi także potrzebne grafiki, animacje i dodatkowe informacje na ekranie.
+          </p>
+          <p>
+            Pakiety nie są osobnymi programami uruchamianymi wewnątrz gry. Korzystają z możliwości przygotowanych w silniku i konfigurują je danymi. Dzięki temu można dodawać np. nowe rakiety, nakładki powierzchni czy systemy przemysłu, a wierna wersja oryginalnej gry pozostaje osobnym zestawem zawartości.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Od rekonstrukcji do rozszerzalnej gry</p>
+            <p>Fragile Allegiance pozostaje podstawą, ale dodatkową zawartość i nowe pomysły można od tej chwili dodawać osobno i włączać tylko wtedy, gdy gracz ich chce.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-2-complete">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-23">23 sierpnia 2026</time> · Tutorial 2</p>
+            <h2>Tutorial 2 ukończony</h2>
+            <p class="entry-lead">
+              Odtworzona lekcja o budowie statków działa już od początku do końca.
+            </p>
+          </header>
+
+          <p>
+            Lekcja obejmuje wymagane budynki, małe statki, punkty uzbrojenia, zlecenia, stan Stoczni i anulowanie budowy. Następnie przechodzi do orbitalnego Doku Kosmicznego i większych konstrukcji.
+          </p>
+          <p>
+            Tutorial korzysta z tych samych ekranów i zasad co normalna rozgrywka. Nic nie jest tworzone „na skróty” tylko po to, żeby nagranie wyglądało poprawnie.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-requirements.png" aria-label="Otwórz kadr wymagań Tutoriala 2 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-requirements.png" alt="Tutorial 2 OpenFA wyjaśniający budynki, rudę i fundusze wymagane do budowy statków" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Wymagania</strong> Stocznia, Fabryka Broni, ruda i fundusz Pojazdów.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-ship-designer.png" aria-label="Otwórz projektant statków z Tutoriala 2 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-ship-designer.png" alt="Tutorial 2 OpenFA prezentujący statek zwiadowczy w projektancie" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Małe statki</strong> Zwiadowcy, Combat Eagle i Assault Fighter.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-hardpoints.png" aria-label="Otwórz lekcję o punktach uzbrojenia w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-hardpoints.png" alt="Tutorial 2 OpenFA montujący osłonę w punkcie uzbrojenia statku zwiadowczego" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Punkty uzbrojenia</strong> Broń i osłony są montowane na wybranym statku.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-shipyards.png" aria-label="Otwórz kolejkę Stoczni z Tutoriala 2 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-shipyards.png" alt="Tutorial 2 OpenFA pokazujący zlecenia zwiadowcy i Combat Eagle w Stoczni" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Stocznia</strong> Zlecenia, czas budowy i komunikaty o blokadach.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-space-dock.png" aria-label="Otwórz lekcję o Doku Kosmicznym w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-space-dock.png" alt="Tutorial 2 OpenFA prezentujący budowę orbitalnego Doku Kosmicznego" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Dok Kosmiczny</strong> Większe statki korzystają z osobnego obiektu orbitalnego.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial2-orbital-construction.png" aria-label="Otwórz kadr budowy orbitalnej z Tutoriala 2 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-orbital-construction.png" alt="Tutorial 2 OpenFA prezentujący budowę Transportera w Doku Kosmicznym" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Budowa orbitalna</strong> Transportery i Destruktory korzystają z odtworzonych planów.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Sprawdzone w kliencie</p>
+            <p>Wszystkie 272 odtworzone akcje wykonały się w docelowym kliencie z oryginalnymi zasobami i narracją.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-complete">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-18">18 sierpnia 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1 ukończony</h2>
+            <p class="entry-lead">
+              Pełna lekcja o budowie kolonii działa już w OpenFA.
+            </p>
+          </header>
+
+          <p>
+            Końcowa część obejmuje precyzyjne ustawianie budynków, obszary ochrony i efektów, rozbiórkę oraz komunikat o braku środków.
+          </p>
+          <p>
+            Zachowano oryginalne ruchy kursora, czasy, napisy i narrację. Wszystkie akcje wykonują te same mechaniki, których używa normalna rozgrywka.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial1-tactical-grid.png" aria-label="Otwórz siatkę taktyczną Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-tactical-grid.png" alt="Tutorial 1 OpenFA pokazujący ustawianie budynku na siatce taktycznej" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Tryb taktyczny</strong> Położenie budynków i zasięgi efektów wynikają z aktualnego stanu kolonii.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial1-demolition-menu.png" aria-label="Otwórz menu rozbiórki z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-demolition-menu.png" alt="Tutorial 1 OpenFA wybierający polecenie rozbiórki w menu budowy" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Polecenie rozbiórki</strong> Tutorial wraca na powierzchnię w trybie wyboru celu.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial1-demolition-target.png" aria-label="Otwórz kadr wyboru budynku do rozbiórki w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-demolition-target.png" alt="Tutorial 1 OpenFA wybierający budynek do rozbiórki na powierzchni asteroidy" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Rozbiórka</strong> Budynek jest wskazywany przez jego obszar na powierzchni.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../../assets/images/devlog-tutorial1-insufficient-funds.png" aria-label="Otwórz lekcję o braku środków w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-insufficient-funds.png" alt="Tutorial 1 OpenFA wyjaśniający komunikat o braku środków na budowę" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Brak środków</strong> Nieudana budowa jest zgłaszana w oknie wiadomości.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Sprawdzone w kliencie</p>
+            <p>Wszystkie 200 odtworzonych akcji wykonały się w docelowym kliencie z oryginalnymi zasobami i narracją.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-construction">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-13">13 sierpnia 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1: budowa kolonii</h2>
+            <p class="entry-lead">Odtworzona lekcja doszła do menu budowy i powierzchni asteroidy.</p>
+          </header>
+
+          <p>
+            Tutorial otwiera katalog, wybiera budynek i wraca na powierzchnię. Budynek powstaje dokładnie tak samo jak podczas zwykłej gry, razem z wymaganiami miejsca, pieniędzy i czasu budowy.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-construction-icon.png" aria-label="Otwórz kadr ikony budowy z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-construction-icon.png" alt="Tutorial 1 OpenFA wskazujący ikonę menu budowy" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Budowa</strong> Lekcja wchodzi przez produkcyjny interfejs.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-construction-menu.png" aria-label="Otwórz katalog budowy z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-construction-menu.png" alt="Tutorial 1 OpenFA pokazujący stronę wsparcia personelu w menu budowy" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Katalog</strong> Strony grupują odtworzone budynki kolonii.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-building-selection.png" aria-label="Otwórz wybór budynku z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-building-selection.png" alt="Tutorial 1 OpenFA wybierający Security Centre do budowy" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Wybór</strong> Koszt, czas budowy i opis są takie same jak podczas normalnej gry.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-building-placement.png" aria-label="Otwórz ustawianie budynku z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-building-placement.png" alt="Tutorial 1 OpenFA ustawiający rusztowanie budynku obok Sky Hooka" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Ustawianie</strong> Rusztowanie pokazuje postęp budowy na powierzchni.</figcaption></figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Działająca ścieżka</p>
+            <p>Wybór z katalogu i ustawienie na powierzchni korzystają z tych samych poleceń co zwykła gra.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-funds">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-06">6 sierpnia 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1: mapa i finanse</h2>
+            <p class="entry-lead">Pierwsza odtworzona sekwencja dociera już do ekranu finansów kolonii.</p>
+          </header>
+
+          <p>
+            Lekcja zaczyna się na mapie strategicznej, otwiera zaznaczoną asteroidę i objaśnia pięć funduszy. Budżet zmienia się odtworzonym przeciąganiem w lewo i w prawo.
+          </p>
+          <p>
+            Ruch kursora, napisy i momenty odtwarzania narracji pochodzą bezpośrednio z danych tutoriala w oryginalnej grze.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-map.png" aria-label="Otwórz mapę strategiczną Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-map.png" alt="Tutorial 1 OpenFA rozpoczynający się na mapie strategicznej" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Obszar gry</strong> Pierwsza akcja otwiera zaznaczoną asteroidę.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-funds.png" aria-label="Otwórz ekran finansów z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-funds.png" alt="Tutorial 1 OpenFA objaśniający główne konto Money" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Money</strong> Przychody i zakupy korzystają z głównego konta.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-budget-categories.png" aria-label="Otwórz kategorie budżetu z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-budget-categories.png" alt="Tutorial 1 OpenFA objaśniający fundusze Construction, Vehicles, Missiles i Personnel" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Pięć funduszy</strong> Construction, Vehicles, Missiles i Personnel mają osobne przydziały.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/devlog-tutorial1-budget-transfer.png" aria-label="Otwórz transfer budżetu z Tutoriala 1 w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial1-budget-transfer.png" alt="Tutorial 1 OpenFA pokazujący przeciąganie paska przydziału środków" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Transfer</strong> Przeciąganie paska naprawdę przenosi środki między funduszami.</figcaption></figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Odtworzony zakres</p>
+            <p>Nawigacja, opisy kont i sterowanie budżetem zachowują oryginalną sekwencję akcji.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-world">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-31">31 lipca 2026</time> · Rekonstrukcja świata</p>
+            <h2>Pierwszy odtworzony świat</h2>
+            <p class="entry-lead">
+              Ten sam oryginalny zapis gry może już zostać pokazany jako kolonia na powierzchni i jako świat na mapie strategicznej.
+            </p>
+          </header>
+
+          <p>
+            OpenFA odczytuje z oryginalnego zapisu asteroidy, frakcje, budynki, statki, personel i dyplomację. Nieznane jeszcze fragmenty danych są zachowywane, żeby niczego nie zgubić. Pokazywane kolonie pochodzą więc z prawdziwych zapisów gry, a nie z ręcznie przygotowanych demonstracji.
+          </p>
+          <p>
+            Powierzchnia asteroidy, miejsca dostępne pod budowę i mapa strategiczna korzystają z tych samych danych świata. Dzięki temu to, co gracz widzi i klika, zgadza się z odtworzonym stanem gry.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../../assets/images/comparison-surface.png" aria-label="Otwórz porównanie powierzchni asteroidy"><img src="../../assets/images/comparison-surface.png" alt="Oryginalna powierzchnia asteroidy obok rekonstrukcji OpenFA" width="1291" height="511" loading="lazy" decoding="async"></a><figcaption><strong>Powierzchnia</strong> Oryginał i OpenFA z tego samego zapisu.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/comparison-grid.png" aria-label="Otwórz porównanie siatki budowy"><img src="../../assets/images/comparison-grid.png" alt="Oryginalna siatka budowy obok rekonstrukcji OpenFA" width="1290" height="511" loading="lazy" decoding="async"></a><figcaption><strong>Siatka budowy</strong> Zapisany teren i zablokowane pola.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/comparison-map.png" aria-label="Otwórz porównanie mapy strategicznej"><img src="../../assets/images/comparison-map.png" alt="Oryginalna mapa strategiczna obok rekonstrukcji OpenFA" width="1283" height="509" loading="lazy" decoding="async"></a><figcaption><strong>Mapa strategiczna</strong> Odtworzona skala, własność i sensory.</figcaption></figure>
+          </div>
 
           <div class="entry-result">
             <p class="label">Potwierdzony wynik</p>
-            <p>Początek mapy i odstęp pól są zgodne; środki asteroid różnią się najwyżej o jeden piksel.</p>
+            <p>Początek mapy i odstęp pól są zgodne z referencją; środki asteroid różnią się najwyżej o jeden piksel.</p>
           </div>
-        </article>
-
-        <article class="journal-entry" id="saved-world">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-30">30 lipca 2026</time> · Archeologia symulacji</p>
-            <h2>Rozpakowany zapisany świat</h2>
-            <p class="entry-lead">
-              Zapisy ujawniają stan symulacji niewidoczny podczas gry.
-            </p>
-          </header>
-
-          <p>
-            Importer weryfikuje graf alokacji i odczytuje typowane rekordy asteroid, frakcji, budynków, statków, personelu, dyplomacji i symulacji.
-          </p>
-          <p>
-            Kolonie referencyjne są ładowane z oryginalnych relacji, nie z danych demonstracyjnych. Nieznane bajty są zachowywane bezstratnie.
-          </p>
-
-          <div class="entry-result">
-            <p class="label">Wpływ na implementację</p>
-            <p>Renderer, prezenter i symulacja korzystają z tego samego zapisanego świata.</p>
-          </div>
-        </article>
-
-        <article class="journal-entry" id="asteroid-relief">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-27">27 lipca 2026</time> · Renderowanie świata</p>
-            <h2>Rzeźba terenu przed dekoracją</h2>
-            <p class="entry-lead">
-              Teren, maski, siatka i dostępność budowy są osobnymi stanami.
-            </p>
-          </header>
-
-          <figure class="framed-media entry-media">
-            <img src="../../assets/images/comparison-grid.png" alt="Siatka budowy z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1290" height="511" loading="lazy" decoding="async">
-            <figcaption><strong>Oryginał / OpenFA</strong> Ta sama zapisana mapa budowy użyta do porównania rzeźby terenu, projekcji i zablokowanych pól.</figcaption>
-          </figure>
-
-          <p>
-            Odtworzona kolejność: tło, ziarno terenu, rzeźba, detal powierzchni i kompozycja palety.
-          </p>
-          <p>
-            Mapa budowy jest zachowywana bit po bicie. Maski renderera korzystają z osobnego stanu.
-          </p>
-
-          <div class="entry-result">
-            <p class="label">Zasada pracy</p>
-            <p>Zmiany wizualne wymagają porównania kadru w docelowym kliencie.</p>
-          </div>
-        </article>
-
-        <article class="journal-entry" id="original-interface">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-16">16 lipca 2026</time> · Kadry referencyjne</p>
-            <h2>Ponowne poznawanie interfejsu</h2>
-            <p class="entry-lead">
-              Prace nad interfejsem zaczynają się od kadrów, stanów i działania kontrolek.
-            </p>
-          </header>
-
-          <figure class="framed-media entry-media">
-            <img src="../../assets/images/comparison-building.png" alt="Katalog budowy z oryginalnego Fragile Allegiance obok rekonstrukcji OpenFA" width="1289" height="513" loading="lazy" decoding="async">
-            <figcaption><strong>Oryginał / OpenFA</strong> Wybór, zawartość i nawigacja katalogu budowy porównane obok siebie.</figcaption>
-          </figure>
-
-          <p>
-            Zestaw referencyjny obejmuje ekran główny, mapę, budowę, Sci-Tek, badania, statki, finanse, personel i raporty. Ukryte mechaniki wymagają kodu lub śladu działania.
-          </p>
-          <p>
-            Ekrany korzystają z MVP: stan modelu, akcje prezentera i wymienny widok. Renderer nie przechowuje nawigacji ani sztucznego stanu gry.
-          </p>
         </article>
 
         <article class="journal-entry" id="foundations">
           <header>
-            <p class="devlog-date"><time datetime="2026-07-16">16 lipca 2026</time> · Fundamenty projektu</p>
-            <h2>Budowa fundamentów</h2>
+            <p class="devlog-date"><time datetime="2026-07-16">16 lipca 2026</time> · Fundamenty</p>
+            <h2>Fundamenty rekonstrukcji</h2>
             <p class="entry-lead">
-              Podstawowe granice: deterministyczna symulacja, legalny import zasobów i wymienny klient.
+              Od początku założenie jest proste: nie zgadywać działania gry i nie dołączać do OpenFA materiałów należących do oryginału.
             </p>
           </header>
 
           <p>
-            Model domenowy jest niezależny od plików, grafiki i wejścia. Symulacja używa stałych taktów, uporządkowanych poleceń i jawnego stanu losowego.
+            Zrzuty ekranu pokazują, jak gra powinna wyglądać. Program, jego dane i zapisy pomagają ustalić, dlaczego zachowuje się właśnie w taki sposób.
           </p>
           <p>
-            Zasoby są importowane z legalnej instalacji. Repozytorium i wydania nie zawierają komercyjnych danych gry.
+            OpenFA nie rozpowszechnia oryginalnych grafik, dźwięków ani filmów. Są one wczytywane z legalnej instalacji Fragile Allegiance wskazanej przez gracza.
           </p>
           <p>
-            OpenFA ładuje standardową zawartość deklaratywną z wersjonowanego archiwum <code>.ofapkg</code>. Rozszerzenia zawierają tylko dane i są porządkowane według stałego priorytetu oraz identyfikatora.
+            Już na tym etapie zawartość gry zaczyna być oddzielana od samego silnika. Z czasem ten pomysł rozwinie się w format <code>.ofapkg</code>, używany dziś także do modów i opcjonalnych rozszerzeń.
           </p>
           <p>
             AI pomaga analizować dekompilat. Testy odtwarzają przypadki zasobów, zapisów i symulacji; wygenerowane wyjaśnienia pozostają hipotezami.
           </p>
 
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../../assets/images/original-main-menu.png" aria-label="Otwórz referencyjny ekran główny oryginału"><img src="../../assets/images/original-main-menu.png" alt="Ekran główny oryginalnego Fragile Allegiance używany jako referencja" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Kadr referencyjny</strong> Widoczny układ i stany kontrolek.</figcaption></figure>
+            <figure class="framed-media"><a href="../../assets/images/comparison-building.png" aria-label="Otwórz porównanie katalogu budowy"><img src="../../assets/images/comparison-building.png" alt="Oryginalny katalog budowy obok OpenFA" width="1289" height="513" loading="lazy" decoding="async"></a><figcaption><strong>Ta sama gra, nowy silnik</strong> OpenFA korzysta z oryginalnych zasobów, ale odtwarza zachowanie we własnym kodzie.</figcaption></figure>
+          </div>
+
           <div class="entry-result">
-            <p class="label">Wpływ architektoniczny</p>
-            <p>OpenRA wpłynął na rozdzielenie symulacji, zawartości i prezentacji.</p>
+            <p class="label">Zasada pracy</p>
+            <p>Zrzut ekranu mówi, jak coś wygląda. Żeby ustalić, jak naprawdę działa, potrzebny jest program, dane, zapis gry albo powtarzalny test w oryginale.</p>
          </div>
        </article>
         <article class="journal-entry origin-entry" id="origin">
@@ -315,7 +647,7 @@
                 <time datetime="2026-07">lipiec 2026</time>
                 <div>
                   <h4>Renderer i teren proceduralny</h4>
-                  <p>Badania obejmują teren, rzeźbę, dithering, maski, palety i kolejność kompozycji.</p>
+                  <p>Badania obejmują już teren, kratery, sposób cieniowania, kolory i kolejność rysowania poszczególnych warstw.</p>
                 </div>
               </article>
             </div>
@@ -340,10 +672,11 @@
     <section class="closing-section compact-closing">
       <p class="eyebrow">Aktualizacje projektu</p>
       <h2>Nowe wpisy będą dodawane po weryfikacji prac</h2>
-      <p>Aktualizacje pojawią się tutaj i w repozytorium.</p>
+      <p>Oprócz zweryfikowanych wpisów dziennika możesz śledzić bieżące buildy preview, filmy z rozwoju projektu i dyskusję społeczności.</p>
       <div class="hero-actions centered-actions">
         <a class="button button-primary" href="../index.html">Opis OpenFA</a>
-        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-docs" rel="external">Zobacz na GitHubie</a>
+        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Wydania preview</a>
+        <a class="button button-secondary" href="https://discord.gg/fzKvrmxVf" rel="external">Dołącz do Discorda</a>
       </div>
     </section>
   </main>
@@ -356,7 +689,11 @@
     </div>
     <div class="footer-links">
       <a href="../index.html">Opis projektu</a>
-      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Pobierz oryginalną grę</a>
+      <a href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Wydania preview</a>
+      <a href="https://www.youtube.com/@enderdevpl" rel="external">Filmy OpenFA na YouTube</a>
+      <a href="https://discord.gg/fzKvrmxVf" rel="external">Dołącz do Discorda OpenFA</a>
+      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Pobierz oryginalną grę z GOG</a>
+      <a href="https://store.steampowered.com/app/383100/Fragile_Allegiance/" rel="external">lub Steam</a>
     </div>
     <p class="legal">
       OpenFA jest nieoficjalnym, niezależnym projektem i nie jest powiązany ani wspierany przez pierwotnych twórców, wydawców lub obecnych właścicieli praw do <em>Fragile Allegiance</em>. Wszystkie znaki towarowe, nazwy i materiały z oryginalnej gry należą do odpowiednich właścicieli. Zrzuty ekranu i zdekodowane artefakty wizualne z oryginalnej gry są prezentowane w celach identyfikacyjnych, badawczych i porównawczych.

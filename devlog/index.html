@@ -15,17 +15,17 @@
   <meta property="og:locale" content="en_GB">
   <meta property="og:locale:alternate" content="pl_PL">
   <meta property="og:title" content="Devlog | OpenFA">
-  <meta property="og:description" content="Follow the evidence behind OpenFA: recovered formats, saved worlds, rendering and simulation.">
-  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
-  <meta property="og:image:width" content="1283">
-  <meta property="og:image:height" content="509">
-  <meta property="og:image:alt" content="The Fragile Allegiance strategic map and the OpenFA reconstruction shown side by side">
+  <meta property="og:description" content="Verified OpenFA milestones: reconstructed original-game systems, public preview builds and new extensions.">
+  <meta property="og:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/devlog-asteroid-engines.png">
+  <meta property="og:image:width" content="640">
+  <meta property="og:image:height" content="480">
+  <meta property="og:image:alt" content="The reconstructed Asteroid Engines control screen running in OpenFA">
   <meta property="og:url" content="https://ender-dev-pl.github.io/openfa-docs/devlog/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Devlog | OpenFA">
-  <meta name="twitter:description" content="Recovered formats, saved worlds, rendering and simulation from the OpenFA reconstruction of Fragile Allegiance.">
-  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/comparison-map.png">
-  <meta name="twitter:image:alt" content="The Fragile Allegiance strategic map and the OpenFA reconstruction shown side by side">
+  <meta name="twitter:description" content="Verified milestones from the OpenFA reconstruction and extension of Fragile Allegiance.">
+  <meta name="twitter:image" content="https://ender-dev-pl.github.io/openfa-docs/assets/images/devlog-asteroid-engines.png">
+  <meta name="twitter:image:alt" content="The reconstructed Asteroid Engines control screen running in OpenFA">
   <title>Devlog | OpenFA</title>
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="apple-touch-icon" href="../favicon.png">
@@ -52,15 +52,15 @@
   <main id="main">
     <section class="page-hero">
       <p class="eyebrow">Development journal</p>
-      <h1>Research and<br> implementation notes</h1>
+      <h1>Verified project<br> milestones</h1>
       <p>
-        Technical notes on recovered behaviour, implementation and open questions.
+        Short updates on recovered behaviour and working game systems.
       </p>
       <p class="page-hero-note">
         OpenFA is a spare-time project with no fixed release schedule.
       </p>
       <div class="journal-key" aria-label="Evidence terminology">
-        <span><strong>Confirmed</strong> Supported directly by code, data, saves or runtime capture.</span>
+        <span><strong>Confirmed</strong> Supported directly by the original program, game data, saved games or repeatable observation.</span>
         <span><strong>Inferred</strong> Matches observations but lacks direct proof.</span>
         <span><strong>Unknown</strong> Not established.</span>
       </div>
@@ -69,139 +69,470 @@
     <div class="journal-layout">
       <aside class="journal-nav" aria-label="Devlog entries">
         <p class="label">Entries</p>
-        <a href="#strategic-map"><span>31 Jul &rsquo;26</span>The strategic map returns</a>
-        <a href="#saved-world"><span>30 Jul &rsquo;26</span>A saved world, unpacked</a>
-        <a href="#asteroid-relief"><span>27 Jul &rsquo;26</span>Relief before decoration</a>
-        <a href="#original-interface"><span>16 Jul &rsquo;26</span>Learning the interface</a>
-        <a href="#foundations"><span>16 Jul &rsquo;26</span>Laying the foundations</a>
+        <a href="#trade-teaser"><span>Teaser</span>Trading may change</a>
+        <a href="#asteroid-engines"><span>13 Sep &rsquo;26</span>Asteroid Engines recovered</a>
+        <a href="#first-community-feedback"><span>11&ndash;13 Sep &rsquo;26</span>First community feedback loop</a>
+        <a href="#huge-maps"><span>10 Sep &rsquo;26</span>Huge maps</a>
+        <a href="#ofapkg-missiles"><span>10 Sep &rsquo;26</span>Packages extend gameplay</a>
+        <a href="#surface-information-layers"><span>8 Sep &rsquo;26</span>Surface information layers</a>
+        <a href="#legacy-networking"><span>3 Sep &rsquo;26</span>How the original multiplayer worked</a>
+        <a href="#first-public-preview"><span>1 Sep &rsquo;26</span>First public release 0.370</a>
+        <a href="#ofapkg-extension-system"><span>31 Aug &rsquo;26</span>.ofapkg becomes an extension system</a>
+        <a href="#tutorial-2-complete"><span>23 Aug &rsquo;26</span>Tutorial 2 complete</a>
+        <a href="#tutorial-1-complete"><span>18 Aug &rsquo;26</span>Tutorial 1 complete</a>
+        <a href="#tutorial-1-construction"><span>13 Aug &rsquo;26</span>Tutorial 1: colony building</a>
+        <a href="#tutorial-1-funds"><span>6 Aug &rsquo;26</span>Tutorial 1: map and funds</a>
+        <a href="#first-world"><span>31 Jul &rsquo;26</span>The first reconstructed world</a>
+        <a href="#foundations"><span>16 Jul &rsquo;26</span>Foundations of the reconstruction</a>
         <a href="#origin"><span>23 Sep &rsquo;23</span>The first decoded image</a>
       </aside>
 
       <div class="journal-entries">
-        <article class="journal-entry" id="strategic-map">
+        <article class="journal-entry" id="trade-teaser">
+          <p class="eyebrow">A glimpse of a possible future</p>
           <header>
-            <p class="devlog-date"><time datetime="2026-07-31">31 July 2026</time> · Rendering</p>
-            <h2>The strategic map returns</h2>
+            <h2>Perhaps traders won&rsquo;t always be just a menu away.</h2>
             <p class="entry-lead">
-              The strategic map now uses recovered geometry and real saved state.
+              The way trade works in OpenFA may look quite different someday.
             </p>
           </header>
 
-          <figure class="framed-media entry-media">
-            <img src="../assets/images/comparison-map.png" alt="Original Fragile Allegiance strategic map beside the OpenFA reconstruction" width="1283" height="509" decoding="async" fetchpriority="high">
-            <figcaption><strong>Original / OpenFA</strong> The same strategic-map state rendered side by side.</figcaption>
-          </figure>
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-trade-marketplace-docking.png" aria-label="Open the full-resolution marketplace docking teaser"><img src="../assets/images/devlog-trade-marketplace-docking.png" alt="OpenFA asteroid surface with several merchant ships docked around a tall trade hub" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Something is docking&hellip;</strong></figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-trade-marketplace-visitors.png" aria-label="Open the full-resolution marketplace visitor teaser"><img src="../assets/images/devlog-trade-marketplace-visitors.png" alt="OpenFA asteroid surface with different types of visiting ships docked around the same trade hub" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>&hellip;and not every visitor looks the same.</strong></figcaption>
+            </figure>
+          </div>
+
+        </article>
+
+        <article class="journal-entry" id="asteroid-engines">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-13">13 September 2026</time> · Preview 0.495 · Original-game reconstruction</p>
+            <h2>Asteroid Engines recovered</h2>
+            <p class="entry-lead">
+              Preview 0.495 restores working Asteroid Engines controls and lets the player actually change an asteroid's movement.
+            </p>
+          </header>
 
           <p>
-            The original has a fitted full-sector view and an 8 by 5 cell zoom. Scale is quantised; the reference save produces a 21-pixel cell pitch.
+            The player can change asteroid heading and engine power from the reconstructed control view while the map shows the selected asteroid and its movement vector relative to nearby objects.
           </p>
           <p>
-            Rendering and hit testing share this geometry. Size, ownership and sensors come from saved model state.
+            The same work also corrected the movement timing of ships, fleets and missiles to match the original game. The screen is therefore more than a visual recreation: its controls really affect the game world.
           </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-asteroid-engines.png" aria-label="Open the full-resolution Asteroid Engines control screen"><img src="../assets/images/devlog-asteroid-engines.png" alt="OpenFA Asteroid Engines screen showing nearby asteroids and the selected asteroid movement vector" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Asteroid Engines</strong> Heading and power controls are connected to the reconstructed strategic movement state.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Public preview 0.495</p>
+            <p>Asteroid Engines, strategic movement commands and the localized control screen are available in the 13 September preview.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-community-feedback">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-11">11</time>&ndash;<time datetime="2026-09-13">13 September 2026</time> · Community</p>
+            <h2>First community-driven fixes</h2>
+            <p class="entry-lead">
+              Preview 0.478 triggered the first real external testing cycle of OpenFA.
+            </p>
+          </header>
+
+          <p>
+            Players testing the 10 September build reported several problems that had escaped the existing replay and regression coverage. The reports were reproduced, fixed and folded into the next public preview rather than remaining as developer-only observations.
+          </p>
+          <p>
+            That makes the step from 0.478 to 0.495 the first complete public feedback loop for the project: <strong>release &rarr; external testing &rarr; reported problems &rarr; verified fixes &rarr; next release</strong>.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Community testing becomes part of development</p>
+            <p>Preview 0.495 is the first OpenFA build to include fixes driven directly by feedback from public nightly users.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="huge-maps">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-10">10 September 2026</time> · Core</p>
+            <h2>Huge maps</h2>
+            <p class="entry-lead">
+              OpenFA game worlds are no longer limited to the scale of the original <em>Fragile Allegiance</em> arena.
+            </p>
+          </header>
+
+          <p>
+            The map engine can now handle worlds far larger than the original game. A smooth camera and extended zoom make those larger areas practical to navigate, while classic-sized maps continue to work as before.
+          </p>
+          <p>
+            The larger world is an OpenFA extension rather than a replacement for the original map scale: standard-size games remain valid while custom scenarios can spread asteroids, fleets and colonies across far greater distances.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-huge-maps.gif" aria-label="Open the full animated huge-map view (16 MB)"><img src="../assets/images/devlog-huge-maps-thumb.gif" alt="Animated OpenFA strategic map showing navigation across a much larger game world" width="640" height="478" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Larger strategic space</strong> Native arenas, continuous navigation and extended zoom support worlds far beyond the original arena size.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Preview 0.478</p>
+            <p>The 10 September preview is the first public build to expose the enlarged strategic-map foundation.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="ofapkg-missiles">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-10">10 September 2026</time> · Preview 0.478 · Package extensions</p>
+            <h2>Packages extend gameplay, not just catalogues</h2>
+            <p class="entry-lead">
+              The package system is now being used for optional mechanics and presentation, not only for reconstructing the original content catalogue.
+            </p>
+          </header>
+
+          <p>
+            The clearest examples are the Interceptor Missile, which autonomously engages incoming missiles and can also attack asteroids, and the Decoy Missile, which separates into four harmless targets near its destination to saturate missile defences. Both missiles are delivered as optional <code>.ofapkg</code> extensions instead of being hard-wired into the standard game.
+          </p>
+          <p>
+            Preview 0.478 ships with 12 <code>.ofapkg</code> packages, including the new missiles, rare asteroid types and extra surface information. It is the first public build where OpenFA extensions are clearly visible during ordinary play.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-interceptor-missile.png" aria-label="Open the full-resolution Interceptor Missile construction screen"><img src="../assets/images/devlog-interceptor-missile.png" alt="OpenFA Missile Construction screen showing the package-defined Interceptor Missile" width="1280" height="956" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Interceptor Missile</strong> A new defensive missile delivered as an optional extension.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-decoy-missile.png" aria-label="Open the full-resolution Decoy Missile construction screen"><img src="../assets/images/devlog-decoy-missile.png" alt="OpenFA Missile Construction screen showing the package-defined Decoy Missile" width="1280" height="956" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Decoy Missile</strong> A two-stage package-defined missile that creates four harmless targets near the destination.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Extension boundary proven in gameplay</p>
+            <p>New gameplay elements can be added as separate packages without changing the standard Fragile Allegiance experience.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="surface-information-layers">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-08">8 September 2026</time> · Package extensions</p>
+            <h2>Surface planning and status layers</h2>
+            <p class="entry-lead">
+              Optional package-defined HUD layers can expose information that the original interface kept difficult to inspect.
+            </p>
+          </header>
+
+          <p>
+            The planning layer puts useful information directly on the asteroid surface: Screen Generator coverage, building footprints and obstacles, power priorities and the exact reason why a selected building cannot currently be placed.
+          </p>
+          <p>
+            A separate set of overlays shows construction progress and building condition, while ship health can be seen directly in the inventory. Each display can be enabled independently, and turning it off does not affect gameplay or saved games.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-screen-coverage.png" aria-label="Open the full-resolution Screen protection overlay"><img src="../assets/images/devlog-screen-coverage.png" alt="OpenFA asteroid surface with a cyan overlay showing Screen Generator protection coverage" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Screen protection</strong> Protected surface cells are visible as an information layer.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-build-diagnostics.png" aria-label="Open the full-resolution building diagnostics HUD"><img src="../assets/images/devlog-build-diagnostics.png" alt="OpenFA surface placement view showing available and required construction funds" width="646" height="509" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Build diagnostics</strong> The HUD explains why the selected building cannot currently be placed.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-building-progress.png" aria-label="Open the full-resolution building progress bars"><img src="../assets/images/devlog-building-progress.png" alt="OpenFA asteroid colony with progress bars displayed above buildings under construction" width="1287" height="968" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Construction progress</strong> Package overlays can expose build state on the surface.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-building-health.png" aria-label="Open the full-resolution building health bars"><img src="../assets/images/devlog-building-health.png" alt="OpenFA asteroid colony with health bars displayed above damaged buildings" width="1284" height="966" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Building health</strong> Damage state can be inspected without opening another screen.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-ship-health.png" aria-label="Open the full-resolution ship inventory health bars"><img src="../assets/images/devlog-ship-health.png" alt="OpenFA ship inventory with coloured health bars beneath individual ship icons" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Ship health</strong> Individual craft condition is visible directly in the inventory.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Read-only extensions</p>
+            <p>The overlays only show extra information. They do not change the rules of the original game.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="legacy-networking">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-03">3 September 2026</time> · Original-game research</p>
+            <h2>We now understand how the original multiplayer worked</h2>
+            <p class="entry-lead">
+              The original Fragile Allegiance multiplayer has been studied far enough to explain how several players stayed in the same synchronized game.
+            </p>
+          </header>
+
+          <p>
+            We now know how players joined a session, how one machine coordinated the game, how commands reached every participant and how the game tried to recover when synchronization went wrong. The old connection methods used by the DOS release have also been identified.
+          </p>
+          <p>
+            This does not mean multiplayer is already playable in OpenFA. It does mean the important rules are now known, so a modern multiplayer implementation can be built without guessing how the original behaved.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Recovered protocol behaviour</p>
+            <p>Future multiplayer work can now follow known rules instead of relying on trial and error.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-public-preview">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-01">1 September 2026</time> · Preview 0.370</p>
+            <h2>First public release</h2>
+            <p class="entry-lead">
+              OpenFA leaves the development environment for the first time as a downloadable community-testing build.
+            </p>
+          </header>
+
+          <p>
+            Preview 0.370 is explicitly published as an unfinished development snapshot. At this point the mechanics exercised by <em>Fragile Allegiance</em> tutorials 1&ndash;6 can be tested end to end, while incomplete systems, regressions and differences from the original are still expected.
+          </p>
+          <p>
+            The preview requires a locally installed legal copy of the original game and uses <code>First-Run.ps1</code> to select its assets. The source repository remains private for now; feedback and reproducible bug reports are collected through the public preview project.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">Public testing begins</p>
+            <p>0.370 establishes the preview-release line: testable builds without presenting the reconstruction as a finished product.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="ofapkg-extension-system">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-31">31 August 2026</time> · Extension system</p>
+            <h2><code>.ofapkg</code> grows into a full mod and extension system</h2>
+            <p class="entry-lead">
+              Packages started as a way to describe the construction catalogue. They can now do much more.
+            </p>
+          </header>
+
+          <p>
+            Buildings, ships, fleets, missiles, ores, research, trade, personnel and scenarios no longer have to be hard-wired into one fixed version of the game. OpenFA can load their definitions from active packages together with the graphics, animations and on-screen information they need.
+          </p>
+          <p>
+            Packages are not separate programs running inside the game. They use features already provided by the engine and configure them with data. That makes it possible to add new missiles, surface overlays, industry systems and other ideas while keeping the faithful original game as a separate content set.
+          </p>
+
+          <div class="entry-result">
+            <p class="label">From reconstruction to an extensible game</p>
+            <p>Fragile Allegiance remains the baseline, while extra content and new ideas can now be added separately and enabled only when the player wants them.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-2-complete">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-23">23 August 2026</time> · Tutorial 2</p>
+            <h2>Tutorial 2 complete</h2>
+            <p class="entry-lead">
+              The recovered Ship Construction lesson now runs from start to finish.
+            </p>
+          </header>
+
+          <p>
+            The lesson covers building requirements, small craft, hardpoints, build orders, Ship Yard status and order cancellation. It then moves to the Orbital Space Dock for larger designs.
+          </p>
+          <p>
+            The tutorial uses the same screens and rules as normal play. Nothing is created through shortcuts just to make the recording look correct.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-requirements.png" aria-label="Open the full-resolution Tutorial 2 requirements frame"><img src="../assets/images/devlog-tutorial2-requirements.png" alt="OpenFA Tutorial 2 explaining the buildings, ore and funds required for ship construction" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Requirements</strong> Ship Yard, Weapons Factory, ore and Vehicles funds.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-ship-designer.png" aria-label="Open the full-resolution Tutorial 2 ship designer"><img src="../assets/images/devlog-tutorial2-ship-designer.png" alt="OpenFA Tutorial 2 presenting a Scoutship in the ship designer" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Small craft</strong> Scoutships, Combat Eagles and Assault Fighters.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-hardpoints.png" aria-label="Open the full-resolution Tutorial 2 hardpoint lesson"><img src="../assets/images/devlog-tutorial2-hardpoints.png" alt="OpenFA Tutorial 2 attaching a shield to a Scoutship hardpoint" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Hardpoints</strong> Weapons and shields are attached to the selected craft.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-shipyards.png" aria-label="Open the full-resolution Tutorial 2 Ship Yard queue"><img src="../assets/images/devlog-tutorial2-shipyards.png" alt="OpenFA Tutorial 2 showing Scoutship and Combat Eagle orders in the Ship Yard" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Ship Yard</strong> Orders, build time and blocking messages.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-space-dock.png" aria-label="Open the full-resolution Tutorial 2 Space Dock lesson"><img src="../assets/images/devlog-tutorial2-space-dock.png" alt="OpenFA Tutorial 2 presenting Orbital Space Dock construction" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Space Dock</strong> Larger ships use a separate orbital facility.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial2-orbital-construction.png" aria-label="Open the full-resolution Tutorial 2 orbital construction frame"><img src="../assets/images/devlog-tutorial2-orbital-construction.png" alt="OpenFA Tutorial 2 presenting Transporter construction in the Orbital Space Dock" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Orbital construction</strong> Transporters and Destructors use recovered blueprints.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Verified in the client</p>
+            <p>All 272 recovered actions completed in the target client with original assets and narration.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-complete">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-18">18 August 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1 complete</h2>
+            <p class="entry-lead">
+              The full Colony Building lesson now plays in OpenFA.
+            </p>
+          </header>
+
+          <p>
+            The final section covers tactical placement, protected and affected areas, demolition and insufficient-funds feedback.
+          </p>
+          <p>
+            Original pointer movement, timing, subtitles and narration are retained. Every building action still uses the same gameplay rules as normal play.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial1-tactical-grid.png" aria-label="Open the full-resolution Tutorial 1 tactical grid"><img src="../assets/images/devlog-tutorial1-tactical-grid.png" alt="OpenFA Tutorial 1 showing tactical building placement on the asteroid grid" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Tactical mode</strong> Building positions and effect areas come from the current colony state.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial1-demolition-menu.png" aria-label="Open the full-resolution Tutorial 1 demolition menu"><img src="../assets/images/devlog-tutorial1-demolition-menu.png" alt="OpenFA Tutorial 1 selecting the Destroy command in the construction menu" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Destroy command</strong> The tutorial returns to the surface in target mode.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial1-demolition-target.png" aria-label="Open the full-resolution Tutorial 1 demolition target"><img src="../assets/images/devlog-tutorial1-demolition-target.png" alt="OpenFA Tutorial 1 targeting a building for demolition on the asteroid surface" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Demolition</strong> The selected building is resolved by its surface hit area.</figcaption>
+            </figure>
+            <figure class="framed-media">
+              <a href="../assets/images/devlog-tutorial1-insufficient-funds.png" aria-label="Open the full-resolution Tutorial 1 insufficient funds lesson"><img src="../assets/images/devlog-tutorial1-insufficient-funds.png" alt="OpenFA Tutorial 1 explaining the insufficient construction funds message" width="640" height="480" loading="lazy" decoding="async"></a>
+              <figcaption><strong>Insufficient funds</strong> Construction failure is reported in the message window.</figcaption>
+            </figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Verified in the client</p>
+            <p>All 200 recovered actions completed in the target client with original assets and narration.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-construction">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-13">13 August 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1: colony building</h2>
+            <p class="entry-lead">The recovered lesson has reached the Construction menu and asteroid surface.</p>
+          </header>
+
+          <p>
+            It opens the catalogue, selects a building and returns to the surface. The building is then placed exactly as it would be during normal play, including space, money and construction-time requirements.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-construction-icon.png" aria-label="Open the full-resolution Tutorial 1 construction icon frame"><img src="../assets/images/devlog-tutorial1-construction-icon.png" alt="OpenFA Tutorial 1 pointing to the Construction menu icon" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Construction</strong> The lesson enters through the production UI.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-construction-menu.png" aria-label="Open the full-resolution Tutorial 1 construction catalogue"><img src="../assets/images/devlog-tutorial1-construction-menu.png" alt="OpenFA Tutorial 1 showing the personnel-support page of the Construction menu" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Catalogue</strong> Pages group the recovered colony buildings.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-building-selection.png" aria-label="Open the full-resolution Tutorial 1 building selection"><img src="../assets/images/devlog-tutorial1-building-selection.png" alt="OpenFA Tutorial 1 selecting a Security Centre for construction" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Selection</strong> Cost, build time and description are the same as during normal play.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-building-placement.png" aria-label="Open the full-resolution Tutorial 1 building placement"><img src="../assets/images/devlog-tutorial1-building-placement.png" alt="OpenFA Tutorial 1 placing building scaffolding near the Sky Hook" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Placement</strong> Scaffolding shows construction progress on the surface.</figcaption></figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Implemented path</p>
+            <p>Catalogue selection and surface placement use the same commands as ordinary play.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="tutorial-1-funds">
+          <header>
+            <p class="devlog-date"><time datetime="2026-08-06">6 August 2026</time> · Tutorial 1</p>
+            <h2>Tutorial 1: map and funds</h2>
+            <p class="entry-lead">The first recovered sequence now reaches the colony finance screen.</p>
+          </header>
+
+          <p>
+            The lesson starts on the strategic map, opens the highlighted asteroid and explains the five funds. Budget changes use the recovered left and right drag controls.
+          </p>
+          <p>
+            Pointer movement, subtitle text and narration timing come directly from the original tutorial data.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-map.png" aria-label="Open the full-resolution Tutorial 1 strategic map"><img src="../assets/images/devlog-tutorial1-map.png" alt="OpenFA Tutorial 1 beginning on the strategic map" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Game arena</strong> The first action opens the highlighted asteroid.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-funds.png" aria-label="Open the full-resolution Tutorial 1 Funds screen"><img src="../assets/images/devlog-tutorial1-funds.png" alt="OpenFA Tutorial 1 explaining the main Money account" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Money</strong> Income and purchases use the main account.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-budget-categories.png" aria-label="Open the full-resolution Tutorial 1 budget categories"><img src="../assets/images/devlog-tutorial1-budget-categories.png" alt="OpenFA Tutorial 1 explaining Construction, Vehicles, Missiles and Personnel funds" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Five funds</strong> Construction, Vehicles, Missiles and Personnel are allocated separately.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/devlog-tutorial1-budget-transfer.png" aria-label="Open the full-resolution Tutorial 1 budget transfer"><img src="../assets/images/devlog-tutorial1-budget-transfer.png" alt="OpenFA Tutorial 1 demonstrating a drag on a finance allocation bar" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Transfer</strong> Dragging the bar really moves money between the funds.</figcaption></figure>
+          </div>
+
+          <div class="entry-result">
+            <p class="label">Recovered scope</p>
+            <p>Map navigation, account descriptions and budget controls follow the original action stream.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="first-world">
+          <header>
+            <p class="devlog-date"><time datetime="2026-07-31">31 July 2026</time> · World reconstruction</p>
+            <h2>The first reconstructed world</h2>
+            <p class="entry-lead">
+              The same original save can now be shown both as an asteroid colony and as a world on the strategic map.
+            </p>
+          </header>
+
+          <p>
+            OpenFA reads asteroids, factions, buildings, ships, personnel and diplomacy from original saved games. Parts that are not yet understood are preserved so nothing is lost. The colonies shown here therefore come from real saves rather than hand-made demo data.
+          </p>
+          <p>
+            The asteroid surface, buildable areas and strategic map all use the same world data. What the player sees and clicks therefore matches the reconstructed game state.
+          </p>
+
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../assets/images/comparison-surface.png" aria-label="Open the full-resolution asteroid surface comparison"><img src="../assets/images/comparison-surface.png" alt="Original asteroid surface beside the OpenFA reconstruction" width="1291" height="511" loading="lazy" decoding="async"></a><figcaption><strong>Surface</strong> Original and OpenFA from the same saved world.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/comparison-grid.png" aria-label="Open the full-resolution construction grid comparison"><img src="../assets/images/comparison-grid.png" alt="Original construction grid beside the OpenFA reconstruction" width="1290" height="511" loading="lazy" decoding="async"></a><figcaption><strong>Construction grid</strong> Saved terrain and blocked cells.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/comparison-map.png" aria-label="Open the full-resolution strategic map comparison"><img src="../assets/images/comparison-map.png" alt="Original strategic map beside the OpenFA reconstruction" width="1283" height="509" loading="lazy" decoding="async"></a><figcaption><strong>Strategic map</strong> Recovered scale, ownership and sensors.</figcaption></figure>
+          </div>
 
           <div class="entry-result">
             <p class="label">Confirmed result</p>
-            <p>Map origin and cell pitch match; zoomed asteroid centres differ by at most one pixel.</p>
+            <p>Map origin and cell pitch match the reference; zoomed asteroid centres differ by at most one pixel.</p>
           </div>
-        </article>
-
-        <article class="journal-entry" id="saved-world">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-30">30 July 2026</time> · Simulation archaeology</p>
-            <h2>A saved world, unpacked</h2>
-            <p class="entry-lead">
-              Saves expose simulation state that is not visible during play.
-            </p>
-          </header>
-
-          <p>
-            The importer validates the allocation graph and reads typed records for asteroids, factions, buildings, ships, personnel, diplomacy and simulation state.
-          </p>
-          <p>
-            Reference colonies are loaded from original relationships, not demo data. Unknown bytes are preserved losslessly.
-          </p>
-
-          <div class="entry-result">
-            <p class="label">Effect on implementation</p>
-            <p>Renderer, presenter and simulation use the same saved world.</p>
-          </div>
-        </article>
-
-        <article class="journal-entry" id="asteroid-relief">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-27">27 July 2026</time> · World rendering</p>
-            <h2>Relief before decoration</h2>
-            <p class="entry-lead">
-              Terrain, masks, grid and construction availability are separate states.
-            </p>
-          </header>
-
-          <figure class="framed-media entry-media">
-            <img src="../assets/images/comparison-grid.png" alt="Original Fragile Allegiance construction grid beside the OpenFA reconstruction" width="1290" height="511" loading="lazy" decoding="async">
-            <figcaption><strong>Original / OpenFA</strong> The same saved construction map used to compare relief, projection and blocked cells.</figcaption>
-          </figure>
-
-          <p>
-            Recovered order: background, terrain seed, radial profiles, relief, surface detail, palette composition.
-          </p>
-          <p>
-            The saved construction map is kept bit-for-bit. Renderer masks use separate state.
-          </p>
-
-          <div class="entry-result">
-            <p class="label">Working rule</p>
-            <p>Visual changes require a target-client frame comparison.</p>
-          </div>
-        </article>
-
-        <article class="journal-entry" id="original-interface">
-          <header>
-            <p class="devlog-date"><time datetime="2026-07-16">16 July 2026</time> · Reference capture</p>
-            <h2>Learning the interface again</h2>
-            <p class="entry-lead">
-              The interface work starts from captured screens, states and control behaviour.
-            </p>
-          </header>
-
-          <figure class="framed-media entry-media">
-            <img src="../assets/images/comparison-building.png" alt="Original Fragile Allegiance construction catalogue beside the OpenFA reconstruction" width="1289" height="513" loading="lazy" decoding="async">
-            <figcaption><strong>Original / OpenFA</strong> Construction catalogue selection, content and navigation compared side by side.</figcaption>
-          </figure>
-
-          <p>
-            The reference set covers the front end, map, construction, Sci-Tek, surveys, ships, finances, personnel and reports. Hidden mechanics require code or runtime evidence.
-          </p>
-          <p>
-            Screens use MVP: model state, presenter actions and a replaceable view. The renderer holds no navigation or fake game state.
-          </p>
         </article>
 
         <article class="journal-entry" id="foundations">
           <header>
-            <p class="devlog-date"><time datetime="2026-07-16">16 July 2026</time> · Project foundation</p>
-            <h2>Laying the foundations</h2>
+            <p class="devlog-date"><time datetime="2026-07-16">16 July 2026</time> · Foundations</p>
+            <h2>Foundations of the reconstruction</h2>
             <p class="entry-lead">
-              Core boundaries: deterministic simulation, legal asset import and a replaceable client.
+              The project starts with two simple rules: do not guess how the game works, and do not redistribute assets that belong to the original.
             </p>
           </header>
 
           <p>
-            The domain model is independent of files, graphics and input. Simulation uses fixed ticks, ordered commands and explicit random state.
+            Screenshots show how the game should look. The program, its data and saved games help explain why it behaves the way it does.
           </p>
           <p>
-            Assets are imported from a legal installation. The repository and releases do not contain commercial game data.
+            OpenFA does not redistribute the original graphics, sounds or videos. They are loaded from a legally installed copy of Fragile Allegiance selected by the player.
           </p>
           <p>
-            OpenFA loads standard declarative content from a versioned <code>.ofapkg</code>
-            archive. Extensions are data-only and ordered by stable priority and ID.
+            Even at this early stage, game content is being separated from the engine itself. That idea later grows into the <code>.ofapkg</code> format now used for mods and optional extensions.
           </p>
           <p>
             AI helps navigate the decompilation. Tests replay asset, save and simulation cases; generated explanations remain hypotheses.
           </p>
 
+          <div class="entry-gallery">
+            <figure class="framed-media"><a href="../assets/images/original-main-menu.png" aria-label="Open the full-resolution original main menu reference"><img src="../assets/images/original-main-menu.png" alt="Original Fragile Allegiance main menu used as interface reference" width="640" height="480" loading="lazy" decoding="async"></a><figcaption><strong>Reference capture</strong> Visible layout and control states.</figcaption></figure>
+            <figure class="framed-media"><a href="../assets/images/comparison-building.png" aria-label="Open the full-resolution construction catalogue comparison"><img src="../assets/images/comparison-building.png" alt="Original construction catalogue beside OpenFA" width="1289" height="513" loading="lazy" decoding="async"></a><figcaption><strong>The same game, a new engine</strong> OpenFA uses the original assets while recreating the behaviour in its own code.</figcaption></figure>
+          </div>
+
           <div class="entry-result">
-            <p class="label">Architectural influence</p>
-            <p>OpenRA influenced the separation of simulation, content and presentation.</p>
+            <p class="label">Working rule</p>
+            <p>A screenshot can show what something looks like. To know how it really works, the project needs the program, data, a saved game or a repeatable test in the original.</p>
          </div>
        </article>
         <article class="journal-entry origin-entry" id="origin">
@@ -317,7 +648,7 @@
                 <time datetime="2026-07">July 2026</time>
                 <div>
                   <h4>Renderer and procedural terrain</h4>
-                  <p>Research expands to terrain, relief, dithering, masks, palettes and composition order.</p>
+                  <p>Research expands to terrain, craters, shading, colours and the order in which the visual layers are drawn.</p>
                 </div>
               </article>
             </div>
@@ -342,10 +673,11 @@
     <section class="closing-section compact-closing">
       <p class="eyebrow">Project updates</p>
       <h2>More entries will be added as work is verified</h2>
-      <p>See the project overview or repository for updates.</p>
+      <p>Follow current preview builds, development videos and community discussion alongside the verified journal entries.</p>
       <div class="hero-actions centered-actions">
         <a class="button button-primary" href="../index.html">OpenFA overview</a>
-        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-docs" rel="external">View on GitHub</a>
+        <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Preview releases</a>
+        <a class="button button-secondary" href="https://discord.gg/fzKvrmxVf" rel="external">Join Discord</a>
       </div>
     </section>
   </main>
@@ -358,7 +690,11 @@
     </div>
     <div class="footer-links">
       <a href="../index.html">Project overview</a>
-      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Get the original game</a>
+      <a href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Preview releases</a>
+      <a href="https://www.youtube.com/@enderdevpl" rel="external">OpenFA videos on YouTube</a>
+      <a href="https://discord.gg/fzKvrmxVf" rel="external">Join the OpenFA Discord</a>
+      <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Get the original game on GOG</a>
+      <a href="https://store.steampowered.com/app/383100/Fragile_Allegiance/" rel="external">or Steam</a>
     </div>
     <p class="legal">
       OpenFA is an unofficial, independent project and is not affiliated with or

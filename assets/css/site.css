@@ -1390,6 +1390,18 @@ html[lang="pl"] .origin-entry::before {
   margin: 2.5rem 0;
 }
 
+.entry-gallery .framed-media a {
+  display: block;
+  overflow: hidden;
+  background: #000;
+}
+
+.entry-gallery .framed-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
 .compact-closing {
   border-top: 1px solid var(--line);
 }
