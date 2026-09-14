@@ -59,7 +59,7 @@
           <span>So why is there still no OpenFA?</span>
         </h1>
         <p class="hero-answer">Let&rsquo;s change that.</p>
-        <p class="status-line"><span aria-hidden="true"></span> Development build &middot; not public yet &middot; verified 23 August 2026</p>
+        <p class="status-line"><span aria-hidden="true"></span> Latest public preview 0.495 &middot; Windows + Linux &middot; not a finished product &middot; 13 September 2026</p>
         <p class="hero-intro">
           OpenFA is an independent reconstruction of the 1990s strategy game
           <em>Fragile Allegiance</em>. It recreates asteroid colony management, diplomacy and combat for modern systems, using behaviour documented in the original game.
@@ -67,6 +67,7 @@
         <div class="hero-actions">
           <a class="button button-primary" href="#reconstruction">Discover OpenFA</a>
           <a class="button button-secondary" href="devlog/index.html">Read the devlog</a>
+          <a class="button button-secondary" href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Download preview</a>
         </div>
       </div>
 
@@ -185,7 +186,7 @@
         <p class="eyebrow">The reconstruction</p>
         <h2 id="reconstruction-title">Rebuilding the game from original evidence</h2>
         <p>
-          OpenFA reconstructs behaviour from the executable, original assets, saved games and runtime observations. Screenshots alone are not treated as proof.
+          OpenFA reconstructs behaviour from the original program, game files, saved games and direct comparison with the game in action. Screenshots alone are not treated as proof.
         </p>
       </div>
 
@@ -194,10 +195,10 @@
           <p class="label">OpenFA is</p>
           <ul class="signal-list positive-list">
             <li>An independent reconstruction of the original game</li>
-            <li>A portable engine with deterministic simulation</li>
-            <li>A legal-installation importer for original data</li>
-            <li>A base for preservation and data-driven extensions</li>
-            <li>Explicitly documented unknowns</li>
+            <li>A modern engine that runs on current systems</li>
+            <li>Uses assets from a legally installed copy of the original game</li>
+            <li>A base for preserving the original game and adding optional extensions</li>
+            <li>A clear distinction between what is recovered and what is still uncertain</li>
           </ul>
         </article>
         <article class="definition-card subdued-card">
@@ -207,7 +208,7 @@
             <li>A redistribution of the original game or its assets</li>
             <li>A fork of OpenTTD or OpenRA</li>
             <li>An official product</li>
-            <li>A finished, downloadable game at this stage</li>
+            <li>A finished product</li>
           </ul>
         </article>
       </div>
@@ -216,33 +217,34 @@
         <div class="package-badge" aria-hidden="true">
           <span>openFA content package</span>
           <strong>.ofapkg</strong>
-          <small>data only · versioned · deterministic</small>
+          <small>modular · no executable plug-ins</small>
         </div>
         <div class="package-copy">
-          <p class="eyebrow">Content packages</p>
-          <h3 id="package-title">A controlled format for extensions</h3>
+          <p class="eyebrow">Content and extension packages</p>
+          <h3 id="package-title">One format for content, mods and extensions</h3>
           <p>
-            A <code>.ofapkg</code> is a versioned, data-only ZIP archive. Packages cannot inject executable simulation code.
+            An <code>.ofapkg</code> can add or change parts of the game without rewriting the engine itself. This lets OpenFA keep a faithful version of the original game while also supporting optional extensions.
           </p>
           <div class="package-points">
-            <p><strong>Safe boundaries</strong><span>Typed data only; no executable plug-ins.</span></p>
-            <p><strong>Reproducible composition</strong><span>Stable IDs and priorities make package composition reproducible.</span></p>
-            <p><strong>Legacy fidelity protected</strong><span>Original saves use the standard compatibility package.</span></p>
+            <p><strong>New content</strong><span>Buildings, ships, missiles, ores, research, trade, personnel and scenarios.</span></p>
+            <p><strong>Interface and visuals</strong><span>Animations, HUD elements, extra on-screen information, status indicators and other presentation changes.</span></p>
+            <p><strong>New rules and features</strong><span>Packages can use features provided by the engine and combine them into new gameplay elements.</span></p>
+            <p><strong>The original stays separate</strong><span>The standard game keeps Fragile Allegiance content and behaviour, while extra ideas can be enabled separately.</span></p>
           </div>
           <p class="package-scope">
-            Version 1 supports construction catalogues. More resource types can be added later.
+            Packages already cover far more than the construction catalogue: new missiles, rare asteroid types, extra surface information, visual effects and industry systems are all possible. This is the format intended for OpenFA mods and optional extensions.
           </p>
         </div>
       </div>
 
       <div class="principles-panel" aria-labelledby="principles-title">
         <p class="eyebrow">Reconstruction principles</p>
-        <h3 id="principles-title">How reconstruction claims are checked</h3>
+        <h3 id="principles-title">How we keep OpenFA faithful to the original</h3>
         <ol class="principles-list">
-          <li><span>01</span><strong>Recover behaviour</strong><small>Sources: executable, data files, saves and runtime captures.</small></li>
-          <li><span>02</span><strong>Keep state real</strong><small>Tools and renderers use real simulation state.</small></li>
-          <li><span>03</span><strong>Respect composition</strong><small>Match projection, palettes, masks, layers and draw order.</small></li>
-          <li><span>04</span><strong>Label the unknown</strong><small>Unknown behaviour stays marked as unknown.</small></li>
+          <li><span>01</span><strong>Check how the original behaves</strong><small>We use the program, data files, saved games and recordings of the original in action.</small></li>
+          <li><span>02</span><strong>Do not fake the result</strong><small>What appears on screen comes from the real game state, not a prepared animation.</small></li>
+          <li><span>03</span><strong>Compare the look</strong><small>Layout, colours, layers and draw order are checked against the original.</small></li>
+          <li><span>04</span><strong>Do not hide guesses</strong><small>If something is not known yet, it stays clearly marked as uncertain.</small></li>
         </ol>
       </div>
 
@@ -260,14 +262,14 @@
             <p class="method-index">01 / Analysis</p>
             <h4>Using AI to navigate decompiled code</h4>
             <p>
-              AI links functions, data structures, assets and saved state. Its suggestions are treated as hypotheses.
+              AI helps find connections in the decompiled program and large amounts of game data. Important conclusions still have to be confirmed by the original game or repeatable tests.
             </p>
           </article>
           <article>
             <p class="method-index">02 / Verification</p>
             <h4>Automated regression tests</h4>
             <p>
-              Automated tests cover parsers, saves, simulation, asset decoding and reference actions.
+              Automated tests check saved games, gameplay systems, graphics and repeatable situations taken from the original.
             </p>
           </article>
           <article>
@@ -314,23 +316,33 @@
           </article>
           <article>
             <p class="progress-state recovered">Recovered</p>
-            <h3>Legacy saved worlds</h3>
-            <p>Typed asteroid, faction, building, ship and simulation state from original saves.</p>
+            <h3>Original saved games</h3>
+            <p>OpenFA can read complete worlds from original saves: asteroids, factions, buildings, ships and other gameplay data.</p>
           </article>
           <article>
             <p class="progress-state running">Running in OpenFA</p>
             <h3>Asteroid surface reconstruction</h3>
-            <p>Deterministic relief, construction masks, projection and composition.</p>
+            <p>Terrain, craters, buildable areas and graphic layers are reproduced from the original rules.</p>
           </article>
           <article>
             <p class="progress-state running">Running in OpenFA</p>
             <h3>Strategic map and original interface</h3>
-            <p>Recovered scale, sensors, owner colours, icons and hit testing.</p>
+            <p>The map keeps the original scale and look, shows sensors, owners and objects, and behaves normally under the mouse.</p>
+          </article>
+          <article>
+            <p class="progress-state running">Running in OpenFA</p>
+            <h3>Gameplay systems and tutorials</h3>
+            <p>Construction, ship production, missiles, Asteroid Engines and the gameplay needed for tutorials 1&ndash;6 are already working.</p>
+          </article>
+          <article>
+            <p class="progress-state running">Running in OpenFA</p>
+            <h3><code>.ofapkg</code> mods and extensions</h3>
+            <p><code>.ofapkg</code> packages can add content, new features and interface changes without altering the standard game.</p>
           </article>
           <article>
             <p class="progress-state active">Active work</p>
-            <h3>Animation, interaction and simulation</h3>
-            <p>Buildings, ships, queues, menus and gameplay callbacks are being connected.</p>
+            <h3>Remaining original-game systems and multiplayer</h3>
+            <p>We now understand how the original game kept multiplayer sessions synchronized. Playable multiplayer in OpenFA is still future work.</p>
           </article>
         </div>
 
@@ -356,13 +368,13 @@
           <a href="assets/images/comparison-surface.png" aria-label="Open the full-resolution asteroid surface comparison">
             <img src="assets/images/comparison-surface.png" alt="Original asteroid colony on the left and OpenFA reconstruction on the right" width="1291" height="511" loading="lazy" decoding="async">
           </a>
-          <figcaption><strong>Surface and settlement</strong> Relief, sky, buildings, ships and interface composition.</figcaption>
+          <figcaption><strong>Surface and settlement</strong> Terrain, sky, buildings, ships and interface layout.</figcaption>
         </figure>
         <figure class="framed-media">
           <a href="assets/images/comparison-grid.png" aria-label="Open the full-resolution construction grid comparison">
             <img src="assets/images/comparison-grid.png" alt="Original construction grid on the left and OpenFA reconstruction on the right" width="1290" height="511" loading="lazy" decoding="async">
           </a>
-          <figcaption><strong>Construction grid</strong> Projection, terrain masking and saved construction availability.</figcaption>
+          <figcaption><strong>Construction grid</strong> Grid placement, terrain obstacles and areas available for construction.</figcaption>
         </figure>
         <figure class="framed-media">
           <a href="assets/images/comparison-map.png" aria-label="Open the full-resolution strategic map comparison">
@@ -382,7 +394,7 @@
         <p>Executable analysis</p>
         <p>Original assets</p>
         <p>Saved games</p>
-        <p>Runtime observation</p>
+        <p>Watching the original game in action</p>
       </div>
     </section>
 
@@ -398,22 +410,22 @@
 
       <div class="devlog-grid">
         <article class="devlog-card">
-          <p class="devlog-date"><time datetime="2026-08-23">23 August 2026</time></p>
-          <h3><a href="devlog/index.html#tutorial-2-complete">Tutorial 2 complete</a></h3>
-          <p>The recovered Ship Construction lesson completes all 272 actions in the target client.</p>
-          <a class="card-link" href="devlog/index.html#tutorial-2-complete">Read entry <span aria-hidden="true">&rarr;</span></a>
+          <p class="devlog-date"><time datetime="2026-09-13">13 September 2026</time></p>
+          <h3><a href="devlog/index.html#asteroid-engines">Asteroid Engines recovered</a></h3>
+          <p>Preview 0.495 reconnects asteroid heading and power controls to the recovered strategic movement model.</p>
+          <a class="card-link" href="devlog/index.html#asteroid-engines">Read entry <span aria-hidden="true">&rarr;</span></a>
         </article>
         <article class="devlog-card">
-          <p class="devlog-date"><time datetime="2026-08-18">18 August 2026</time></p>
-          <h3><a href="devlog/index.html#tutorial-1-complete">Tutorial 1 complete</a></h3>
-          <p>The complete Colony Building lesson runs with original actions, assets and narration.</p>
-          <a class="card-link" href="devlog/index.html#tutorial-1-complete">Read entry <span aria-hidden="true">&rarr;</span></a>
+          <p class="devlog-date"><time datetime="2026-09-11">11</time>&ndash;<time datetime="2026-09-13">13 September 2026</time></p>
+          <h3><a href="devlog/index.html#first-community-feedback">First community-driven fixes</a></h3>
+          <p>The 0.478 nightly produced the first external bug reports that were reproduced and fixed in the following 0.495 preview.</p>
+          <a class="card-link" href="devlog/index.html#first-community-feedback">Read entry <span aria-hidden="true">&rarr;</span></a>
         </article>
         <article class="devlog-card">
-          <p class="devlog-date"><time datetime="2026-08-13">13 August 2026</time></p>
-          <h3><a href="devlog/index.html#tutorial-1-construction">Tutorial 1: colony building</a></h3>
-          <p>Catalogue selection and building placement now use the normal construction path.</p>
-          <a class="card-link" href="devlog/index.html#tutorial-1-construction">Read entry <span aria-hidden="true">&rarr;</span></a>
+          <p class="devlog-date"><time datetime="2026-09-10">10 September 2026</time></p>
+          <h3><a href="devlog/index.html#huge-maps">Huge maps</a></h3>
+          <p>The strategic world now supports native arenas, a continuous camera and spaces substantially larger than the original game.</p>
+          <a class="card-link" href="devlog/index.html#huge-maps">Read entry <span aria-hidden="true">&rarr;</span></a>
         </article>
       </div>
     </section>
@@ -427,7 +439,7 @@
       <div class="faq-list">
         <details>
           <summary>Can I play OpenFA today?</summary>
-          <p>No public build yet. Development builds run in the target client.</p>
+          <p>Yes, but only as a public preview. It is not a finished product and incomplete systems may fail. A local installation of the original <em>Fragile Allegiance</em> is required. Current builds are available from the <a href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">openFA preview releases</a>.</p>
         </details>
         <details>
           <summary>Will I need the original game?</summary>
@@ -438,8 +450,8 @@
           <p>It is an independent reconstruction. The original source code is not available.</p>
         </details>
         <details>
-          <summary>What systems are planned?</summary>
-          <p>Modern desktop systems are planned. Platforms will be listed after runtime testing.</p>
+          <summary>What systems are available?</summary>
+          <p>Public preview builds are currently published for Windows x64 and Linux. Both remain development builds rather than supported final releases.</p>
         </details>
         <details>
           <summary>How closely will it match the original?</summary>
@@ -447,7 +459,7 @@
         </details>
         <details>
           <summary>Will OpenFA support mods?</summary>
-          <p>Yes. The <code>.ofapkg</code> format contains versioned data only.</p>
+          <p>Yes. <code>.ofapkg</code> packages can add buildings, ships, missiles, scenarios, interface changes and new features supported by the engine. The standard Fragile Allegiance experience can remain untouched.</p>
         </details>
         <details>
           <summary>Is OpenFA developed with AI?</summary>
@@ -467,7 +479,7 @@
     <section class="closing-section">
       <p class="eyebrow">Development journal</p>
       <h2>Read the reconstruction notes</h2>
-      <p>The journal documents recovered formats, implementation decisions and comparisons with the original game.</p>
+      <p>The journal follows the major milestones, discoveries about the original game and new things that can already be seen or tested.</p>
       <a class="button button-primary" href="devlog/index.html">Enter the devlog</a>
     </section>
   </main>
@@ -479,6 +491,9 @@
       <p class="creator-credit">openFA by <span class="creator-ender">Ender</span><span class="creator-dev">DEV</span></p>
     </div>
     <div class="footer-links">
+      <a href="https://github.com/ender-dev-pl/openfa-preview/releases" rel="external">Preview releases</a>
+      <a href="https://www.youtube.com/@enderdevpl" rel="external">OpenFA videos on YouTube</a>
+      <a href="https://discord.gg/fzKvrmxVf" rel="external">Join the OpenFA Discord</a>
       <a href="https://github.com/ender-dev-pl/openfa-docs" rel="external">Documentation on GitHub</a>
       <a href="https://www.gog.com/en/game/fragile_allegiance" rel="external">Get the original game on GOG</a>
       <a href="https://store.steampowered.com/app/383100/Fragile_Allegiance/" rel="external">Get the original game on Steam</a>
