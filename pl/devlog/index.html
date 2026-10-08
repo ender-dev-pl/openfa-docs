@@ -70,6 +70,9 @@
       <aside class="journal-nav" aria-label="Wpisy w dzienniku">
         <p class="label">Wpisy</p>
         <a href="#trade-teaser"><span>Teaser</span>Handel może się zmienić</a>
+        <a href="#preview-0658"><span>7 paź &rsquo;26</span>Nawigacja, panele i Android</a>
+        <a href="#preview-0597"><span>23 wrz &rsquo;26</span>Szerszy widok gry</a>
+        <a href="#preview-0525"><span>15 wrz &rsquo;26</span>Space Dock i Apple Silicon</a>
         <a href="#asteroid-engines"><span>13 wrz &rsquo;26</span>Odtworzone Asteroid Engines</a>
         <a href="#first-community-feedback"><span>11&ndash;13 wrz &rsquo;26</span>Pierwsza pętla feedbacku społeczności</a>
         <a href="#huge-maps"><span>10 wrz &rsquo;26</span>Ogromne mapy</a>
@@ -108,6 +111,73 @@
             </figure>
           </div>
 
+        </article>
+
+        <article class="journal-entry" id="preview-0658">
+          <header>
+            <p class="devlog-date"><time datetime="2026-10-07">7 października 2026</time> · Preview 0.658.6</p>
+            <h2>Więcej miejsca na grę i szybsza nawigacja</h2>
+            <p class="entry-lead">Szybkie menu, minimapa i odłączane panele ułatwiają korzystanie z powiększonego obszaru gry.</p>
+          </header>
+
+          <p>Szybkie menu pokazuje najważniejsze informacje o asteroidzie, a panele można odłączyć od klasycznego interfejsu i przesunąć nad światem gry. Preview zawiera też poprawki wydajności i prezentacji na szerokich ekranach oraz działający APK na Androida obok paczek dla Windows, Linuksa i Maców z Apple Silicon.</p>
+          <p>Wersja na Androida jest udostępniona jako preview do pobrania; zapowiedź wydania mówi o planowanym udostępnieniu w Google Play.</p>
+
+          <figure class="framed-media entry-media">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/dq_ayn3r1tM" title="Nowości OpenFA z 7 października 2026: szeroki ekran, szybka nawigacja, minimapa i odłączane panele" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>Nowości w ruchu</strong> Film z 7 października pokazuje szerszy widok, szybkie menu, minimapę i odłączane panele. <a href="https://www.youtube.com/watch?v=dq_ayn3r1tM" rel="external">Obejrzyj na YouTube</a>.</figcaption>
+          </figure>
+
+          <div class="entry-result">
+            <p class="label">Preview 0.658.6</p>
+            <p><a href="https://github.com/ender-dev-pl/openfa-preview/releases/tag/0.658.6-dev" rel="external">Przeczytaj opis wydania i pobierz preview</a>.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="preview-0597">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-23">23 września 2026</time> · Preview 0.597.22</p>
+            <h2>Szerszy świat z zachowaniem oryginalnego interfejsu</h2>
+            <p class="entry-lead">Widok asteroidy może wykraczać poza dawny obszar 640&times;480, a klasyczny interfejs pozostaje ostry i wierny pikselom oryginału.</p>
+          </header>
+
+          <p>Można przybliżać i przeciągać powierzchnię asteroidy, przesuwać mapę strategiczną oraz ustawiać skalę interfejsu niezależnie od zoomu świata. Rozszerzony teren, paralaksa i przywrócona różnorodność gwiazd wspierają większy widok. Poprawiono też rozkazy flot i planowanie tras z wieloma przystankami na podstawie zgłoszeń społeczności.</p>
+          <p>OpenFA samodzielnie dekoduje formaty audio i wideo oryginalnej gry, więc FFmpeg jest opcjonalny poza nagrywaniem rozgrywki. To wydanie przynosi również natywne zapisy dla gier zaimportowanych z oryginału, czytelniejsze błędy niezgodnych zapisów i poprawki Ship Inventory.</p>
+
+          <figure class="framed-media entry-media">
+            <div class="video-frame">
+              <iframe src="https://www.youtube-nocookie.com/embed/IbBVhScxKjA" title="Późniejszy teaser OpenFA: szeroki ekran, Friendly Fire i agenci" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <figcaption><strong>Szeroki ekran w ruchu</strong> Ten teaser powstał 4 października, po wydaniu 0.597.22. Pokazuje też późniejsze prace nad Friendly Fire i agentami; te sceny nie są listą funkcji tego wydania. <a href="https://www.youtube.com/watch?v=IbBVhScxKjA" rel="external">Obejrzyj na YouTube</a>.</figcaption>
+          </figure>
+
+          <div class="entry-result">
+            <p class="label">Preview 0.597.22</p>
+            <p><a href="https://github.com/ender-dev-pl/openfa-preview/releases/tag/0.597.22-dev" rel="external">Przeczytaj pełny opis wydania i pobierz preview</a>.</p>
+          </div>
+        </article>
+
+        <article class="journal-entry" id="preview-0525">
+          <header>
+            <p class="devlog-date"><time datetime="2026-09-15">15 września 2026</time> · Preview 0.525.2</p>
+            <h2>Poprawki Space Dock i wydanie dla Apple Silicon</h2>
+            <p class="entry-lead">Do kolejnego publicznego preview trafiły poprawki budowy i nawigacji oraz samodzielna paczka macOS ARM64.</p>
+          </header>
+
+          <p>Budowa Space Dock z Command Centre nie wymaga już naziemnego Ship Yard ani nie kończy się błędem przy pełnym magazynie statków. Poprawiono też czas ukończenia budowy, rozpoznawanie asteroid przez własne statki, otwieranie powierzchni dwuklikiem na mapie strategicznej oraz wybór miejsca budowy prawym przyciskiem myszy.</p>
+          <p>Usunięto również przepełnienie przy obliczaniu kosztu produkcji statków i nieaktualny wybór celu w Missile Control po odrzuconym rozkazie odpalenia.</p>
+
+          <figure class="framed-media entry-media">
+            <a href="../../assets/images/devlog-tutorial2-space-dock.png" aria-label="Otwórz ekran budowy Space Dock w pełnej rozdzielczości"><img src="../../assets/images/devlog-tutorial2-space-dock.png" alt="Ekran Ship Construction w OpenFA z projektem Space Dock i wymaganiami" width="640" height="480" loading="lazy" decoding="async"></a>
+            <figcaption><strong>Space Dock</strong> Pokazany ekran pochodzi sprzed tego preview; w 0.525.2 poprawiono ścieżkę budowy Space Dock z Command Centre.</figcaption>
+          </figure>
+
+          <div class="entry-result">
+            <p class="label">Preview 0.525.2</p>
+            <p><a href="https://github.com/ender-dev-pl/openfa-preview/releases/tag/0.525.2-dev" rel="external">Przeczytaj opis wydania i pobierz preview</a>.</p>
+          </div>
         </article>
 
         <article class="journal-entry" id="asteroid-engines">
