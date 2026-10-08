@@ -1693,3 +1693,27 @@ html[lang="pl"] .origin-entry::before {
     transition-duration: 0.01ms !important;
   }
 }
+/* Privacy policy */
+.privacy-content {
+  max-width: var(--reading);
+  padding-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.privacy-content section + section {
+  margin-top: 2.5rem;
+}
+
+.privacy-content h2 {
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+}
+
+.privacy-content p {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+.privacy-content code {
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
