@@ -1219,6 +1219,20 @@ html[lang="pl"] .hero h1 {
   font-size: 1.02rem;
 }
 
+.release-fix-list {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+  color: #bac2c7;
+}
+
+.release-fix-list li + li {
+  margin-top: 0.35rem;
+}
+
+.release-fix-list li::marker {
+  color: var(--orange);
+}
+
 .origin-entry {
   position: relative;
 }
