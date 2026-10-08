@@ -215,6 +215,7 @@ code {
 .hero,
 .section,
 .page-hero,
+.privacy-content,
 .journal-layout,
 .closing-section,
 .site-footer {
@@ -1610,6 +1611,7 @@ html[lang="pl"] .origin-entry::before {
   .hero,
   .section,
   .page-hero,
+  .privacy-content,
   .journal-layout,
   .closing-section,
   .site-footer {
@@ -1695,8 +1697,11 @@ html[lang="pl"] .origin-entry::before {
 }
 /* Privacy policy */
 .privacy-content {
-  max-width: var(--reading);
   padding-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.privacy-content section {
+  max-width: var(--reading);
 }
 
 .privacy-content section + section {
