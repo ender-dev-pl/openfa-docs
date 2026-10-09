@@ -254,6 +254,19 @@ html[lang="pl"] .hero h1 {
   color: var(--muted);
 }
 
+.hero h1 .hero-footnote {
+  display: inline;
+  position: relative;
+  top: -0.65em;
+  font-size: 0.35em;
+  line-height: 0;
+}
+
+.hero h1 .hero-footnote a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
 .eyebrow,
 .label,
 .devlog-date,
@@ -1102,6 +1115,15 @@ html[lang="pl"] .hero h1 {
   margin: 0;
   color: #79858d;
   font-size: 0.75rem;
+}
+
+.name-footnote {
+  grid-column: 1 / -1;
+  max-width: 900px;
+  margin: 0;
+  color: #aeb8bf;
+  font-size: 0.82rem;
+  scroll-margin-top: 2rem;
 }
 
 /* Devlog */
