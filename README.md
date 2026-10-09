@@ -9,3 +9,8 @@ independent reconstruction of *Fragile Allegiance*.
   and used only for identification, commentary and visual comparison.
 - The repository does not contain the original game data required to run
   OpenFA.
+
+## Branch naming
+
+Use `docs/update-YYYYMMDD` for GitHub Pages updates. The date is when work on
+the update began; later follow-up changes stay on the same branch until merge.

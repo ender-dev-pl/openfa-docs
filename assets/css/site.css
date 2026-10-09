@@ -215,6 +215,7 @@ code {
 .hero,
 .section,
 .page-hero,
+.privacy-content,
 .journal-layout,
 .closing-section,
 .site-footer {
@@ -251,6 +252,19 @@ html[lang="pl"] .hero h1 {
 .hero h1 span {
   display: block;
   color: var(--muted);
+}
+
+.hero h1 .hero-footnote {
+  display: inline;
+  position: relative;
+  top: -0.65em;
+  font-size: 0.35em;
+  line-height: 0;
+}
+
+.hero h1 .hero-footnote a {
+  color: var(--orange);
+  text-decoration: none;
 }
 
 .eyebrow,
@@ -958,6 +972,15 @@ html[lang="pl"] .hero h1 {
   white-space: nowrap;
 }
 
+.android-preview .framed-media a {
+  display: block;
+}
+
+.android-preview .section-heading > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+}
+
 .devlog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1103,6 +1126,15 @@ html[lang="pl"] .hero h1 {
   font-size: 0.75rem;
 }
 
+.name-footnote {
+  grid-column: 1 / -1;
+  max-width: 900px;
+  margin: 0;
+  color: #aeb8bf;
+  font-size: 0.82rem;
+  scroll-margin-top: 2rem;
+}
+
 /* Devlog */
 
 .page-hero {
@@ -1216,6 +1248,20 @@ html[lang="pl"] .hero h1 {
 .journal-entry > p {
   color: #bac2c7;
   font-size: 1.02rem;
+}
+
+.release-fix-list {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+  color: #bac2c7;
+}
+
+.release-fix-list li + li {
+  margin-top: 0.35rem;
+}
+
+.release-fix-list li::marker {
+  color: var(--orange);
 }
 
 .origin-entry {
@@ -1364,6 +1410,51 @@ html[lang="pl"] .origin-entry::before {
 
 .entry-media {
   margin: 2.5rem 0;
+}
+
+.video-frame {
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-link {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+}
+
+.video-link img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play {
+  position: relative;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.35rem;
+  background: #c90021;
+  font-weight: 700;
+  box-shadow: 0 0.3rem 1.5rem #000a;
+}
+
+.video-link:hover .video-play,
+.video-link:focus-visible .video-play {
+  background: #e00025;
 }
 
 .entry-result {
@@ -1610,6 +1701,7 @@ html[lang="pl"] .origin-entry::before {
   .hero,
   .section,
   .page-hero,
+  .privacy-content,
   .journal-layout,
   .closing-section,
   .site-footer {
@@ -1695,8 +1787,11 @@ html[lang="pl"] .origin-entry::before {
 }
 /* Privacy policy */
 .privacy-content {
-  max-width: var(--reading);
   padding-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.privacy-content section {
+  max-width: var(--reading);
 }
 
 .privacy-content section + section {
