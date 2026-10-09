@@ -972,6 +972,15 @@ html[lang="pl"] .hero h1 {
   white-space: nowrap;
 }
 
+.android-preview .framed-media a {
+  display: block;
+}
+
+.android-preview .section-heading > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+}
+
 .devlog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
