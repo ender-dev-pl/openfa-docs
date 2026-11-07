@@ -17,4 +17,4 @@ the update began; later follow-up changes stay on the same branch until merge.
 
 ## 3D model gallery
 
-The English and Polish home pages link to the [OpenFA asset catalogue](https://ender-dev-pl.github.io/openfa-assets/gallery/index.html#type=buildings), published from openfa-assets. The catalogue includes building studies across seven cultures and refined Terran variants, with editable Blend files, standalone GLB files, views, animations and provenance. These are authored interpretations, not recovered original meshes or gameplay sprites.
+The English and Polish home pages link to the [OpenFA asset catalogue](https://ender-dev-pl.github.io/openfa-assets/index.html#type=buildings), published from openfa-assets. The catalogue includes building studies across seven cultures and refined Terran variants, with editable Blend files, standalone GLB files, views, animations and provenance. These are authored interpretations, not recovered original meshes or gameplay sprites.
